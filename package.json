@@ -1,0 +1,29 @@
+{
+  "name": "Software-Engineering",
+  "version": "1.0.0",
+  "description": "En løsning der bedrifter og privatpersoner kan leie ut sine parkeringsplasser til andre.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wakeupgrumpy/Software-Engineering.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wakeupgrumpy/Software-Engineering/issues"
+  },
+  "homepage": "https://github.com/wakeupgrumpy/Software-Engineering#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4"
+  }
+}

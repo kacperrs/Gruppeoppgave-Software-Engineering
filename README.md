@@ -12,7 +12,7 @@
 En oppstartsbedrift ønsker å få lagd en løsning der **bedrifter** og **privatpersoner** kan leie ut sine parkeringsplasser til andre. Idéen går ut på at **noen aktører** kan **registrere tilgjengelige plasser** som kan leies ut, mens **sluttbrukerene** kan **se**, **reservere** og **betale** for parkeringsplasser i den **tiden de trenger det**. 
 
 ## Applikasjonen
-Tanken er å bruke **[Vue.js](https://vuejs.org/)** som web frontend. **[Express](https://expressjs.com/)** som api-backend, med **[SQLite](https://www.sqlitetutorial.net/sqlite-nodejs/)** som database. Vi bruke **[npm](https://www.npmjs.com/)** som pakkesystem (npm kommer som en del av node).
+Tanken er å bruke **[Vue.js](https://vuejs.org/)** som web frontend. **[Express](https://expressjs.com/)** som api-backend, med **[SQLite](https://www.sqlitetutorial.net/sqlite-nodejs/)** som database. Vi bruke **[npm](https://www.npmjs.com/)** som pakkesystem (npm kommer som en del av node). Til testing bruker vi et javascript rammer verk som heter **[Jest](https://jestjs.io/)**
 
 ### Node
 Bruker node versjon **v14.13.0**. Har dere allerde node på maskinen, men usikker på hvilken versjon så kan dere sjekke ved å skrive `node -v` i terminalen:
@@ -32,5 +32,12 @@ Node kan skaffes her: [Node.js](https://nodejs.org/en/)
 
 
 ### :memo: Todo
-- [ ] Legge til eposter i `README`
-- [ ] 
+- [ ] **`README`**
+  - [ ] Legge til epost adresser til gruppemedlemer.
+- [ ] **`Applikasjon`**: Legge til utfyllende informasjon
+  - [ ] Hvordan installere dependencies
+  - [ ] Hvordan skrive en test
+  - [ ] Hvordan kjøre en test
+  - [ ] Hvordan struktruen på applikasjonen skal se ut
+  - [ ] Oversikt over tabeller i databasen
+  - [ ] Hvordan starte serverne i dev
