@@ -1,11 +1,11 @@
 {
-  "name": "Software-Engineering",
+  "name": "share-park",
   "version": "1.0.0",
   "description": "En løsning der bedrifter og privatpersoner kan leie ut sine parkeringsplasser til andre.",
-  "main": "server.js",
+  "main": "./server/server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
