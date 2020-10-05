@@ -11,7 +11,9 @@
     </div>
 
     <div class="buttons is-centered">
-      <button class="button is-danger  is-large is-center">Regisrer deg!</button>
+      <router-link to="/register" class="button is-danger is-large is-center">
+          Registrer deg
+      </router-link>
     </div>
 
   </div>
