@@ -22,6 +22,39 @@ v14.13.0
 ```
 Node kan skaffes her: [Node.js](https://nodejs.org/en/)
 
+### Installere applikasjonen
+Bruk terminalen og naviger til en mappe og last ned github repo (vil da skape mappen `Software-Engineering` med alle filene til applikasjonen):
+```bash
+$ git clone https://github.com/wakeupgrumpy/Software-Engineering.git
+``` 
+Så må dere navigere inn i denne mappen:
+```bash
+$ cd Software-Engineering
+```
+Innstaler alle dependencys til serveren
+```bash
+$ npm install
+```
+Så for å installere alle vue dependencies:
+```bash
+$ cd client
+$ npm install
+```
+Skal i fremtiden når vi er ferdig med utvikling få alt til å være samlet, slik at sensor kun trenger å installere en gang.
+
+### Front end
+For å starte front-end. Så må dere være i mappen **client**:
+```bash
+$ npm start serve
+```
+Dere vill da få tilbake en meldin om at vue er tilgjengelig på <http://localhost:8080>
+
+### Back end
+Naviger til mappen **Software-Engineering**
+```bash
+$ npm start
+```
+Der vill da få tilbakemelding om at server kjører på <http://localhost:5000>
 
 ### Dataflyt
 ![Dataflyt](https://www.planttext.com/api/plantuml/svg/PP9BQyCm48Jl-XNR70LfxZwKK5fAeFH1eBtq8aTReyIH53r2y--xgzYnI0wo9VdJQ6RmCYOLKjxtGdYQc8tnoYQOIVaOyWw3b3DG4VBrrsziuJSucwI47mjV6U-tiQ37ZDVm6iEHfPXy_lC1Onnfw_GD_gIIQbN4yu7rvwj9M63TNgClpdKzmbxvE3YbwKqIJAetjXki6kyZBE0Dqzc2LoSXCimVs7e3nYOCQfC43NDK2IdyDETqWXwCi_S6f5JUIDb0mCF2krWTBE64u1VpkcKw7dgc3nd3QK8fccvXVb6bZhopMcYiaK5gj7gvUXkThT7Xui4dLT90XudUC8UFzzLqBRTLjaT9tgY4U3dAK4ybPCQOUB57MsNb5cbCIWC1RdTNAvQsYoA1cGMjnb0JN76rfFQNnD0l-Wy0)
