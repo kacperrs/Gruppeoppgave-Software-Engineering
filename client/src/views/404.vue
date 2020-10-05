@@ -1,8 +1,8 @@
 <template>
     <div id="error">
-        <article class="message is-danger">
+        <article class="message is-medium is-danger">
             <div class="message-header">
-                <p>404 - Oops!</p>
+                <p>⚙️ - Oops!</p>
             </div>
             <div class="message-body">
                Her ser det ut som det har skjedd en glipp..

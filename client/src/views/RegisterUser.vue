@@ -1,5 +1,5 @@
 <template>
     <div class="register-form">
-        Hello registration 🦏
+        <p class="title">🧟 Registrer bruker</p>
     </div>
 </template>
