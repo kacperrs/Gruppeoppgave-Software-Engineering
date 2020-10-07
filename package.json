@@ -1,5 +1,5 @@
 {
-  "name": "share-park",
+  "name": "share-a-spot",
   "version": "1.0.0",
   "description": "En løsning der bedrifter og privatpersoner kan leie ut sine parkeringsplasser til andre.",
   "main": "./server/server.js",
