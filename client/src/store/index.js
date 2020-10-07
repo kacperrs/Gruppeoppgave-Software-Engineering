@@ -49,6 +49,7 @@ export default new Vuex.Store({
   },
   modules: {},
   getters: {
-    loggedIn: (state) => state.token !== null
+    loggedIn: (state) => state.token !== null,
+    getUsers: (state) => state.db.users
   }
 });

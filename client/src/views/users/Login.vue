@@ -42,6 +42,12 @@
         Feil brukernavn eller passord!
       </div>
     </form>
+    <div class="notification is-link is-light mt-5" v-if="usersInDb">
+      <p>Siden dette er en demo - så kan du logge inn med disse:</p>
+      <p v-for="(user, i) in usersInDb" :key="i">
+        {{ user.username }} - {{ user.password }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -52,8 +58,7 @@ export default {
     return {
       username: "",
       password: "",
-      loginFail: false,
-      loggedIn: this.$store.getters.loggedIn
+      loginFail: false
     };
   },
   methods: {
@@ -69,6 +74,14 @@ export default {
             // this.$router.replace({ name: "Secret" });
           } else this.loginFail = true;
         });
+    }
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
+    usersInDb() {
+      return this.$store.getters.getUsers;
     }
   }
 };
