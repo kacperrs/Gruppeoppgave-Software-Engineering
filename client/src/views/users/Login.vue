@@ -69,10 +69,8 @@ export default {
           password: this.password
         })
         .then((response) => {
-          if (response) {
-            this.$router.push({ name: "Secret" });
-            // this.$router.replace({ name: "Secret" });
-          } else this.loginFail = true;
+          if (response) this.$router.push({ name: "Secret" });
+          else this.loginFail = true;
         });
     }
   },
