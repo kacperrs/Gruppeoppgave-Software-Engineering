@@ -2,10 +2,12 @@
   "name": "share-a-spot",
   "version": "1.0.0",
   "description": "En løsning der bedrifter og privatpersoner kan leie ut sine parkeringsplasser til andre.",
-  "main": "./server/server.js",
+  "main": "./server/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon ./server/server.js"
+    "start": "node ./server/index.js",
+    "dev": "nodemon ./server/index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,11 +21,17 @@
   },
   "homepage": "https://github.com/wakeupgrumpy/Software-Engineering#readme",
   "dependencies": {
+    "@babel/runtime": "^7.11.2",
     "express": "^4.17.1",
     "sqlite3": "^5.0.0"
   },
   "devDependencies": {
-    "jest": "^26.4.2",
-    "nodemon": "^2.0.4"
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.5.2",
+    "jest": "^26.5.3",
+    "nodemon": "^2.0.4",
+    "supertest": "^5.0.0"
   }
 }

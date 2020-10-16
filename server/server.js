@@ -1,11 +1,9 @@
 import express from "express";
-import bodyParser from "body-parser";
+import { errorHandler, notFound } from "./errorHandling.js";
 
 const app = express();
-const PORT = 5000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 // ROUTES
 import userRoutes from "./routes/users.js";
@@ -18,9 +16,13 @@ app.use("/users", userRoutes);
 app.use("/login", loginRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.json({
+    message: "Share-A-Spot Server - Up and 🏃"
+  });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port: http://localhost:${PORT}`);
-});
+// Håndterer feil requests til server
+app.use(notFound);
+app.use(errorHandler);
+
+export { app };
