@@ -1,13 +1,4 @@
-const users = [
-  {
-    username: "admin",
-    password: "password",
-  },
-  {
-    username: "bruker",
-    password: "welcome",
-  },
-];
+import { users } from "../db/index.js";
 
 export const processLoginData = (req, res) => {
   const userCredentials = req.body;
