@@ -17,6 +17,9 @@
             >
               Registrer deg
             </router-link>
+            <router-link to="/parkingspot" class="button is-primary" v-if="loggedIn">
+                Search Parkingspot
+            </router-link>
             <router-link to="/login" class="button is-light" v-if="!loggedIn">
               Logg inn
             </router-link>

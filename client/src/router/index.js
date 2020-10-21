@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -38,6 +39,11 @@ const routes = [
     path: "/secret",
     name: "Secret",
     component: () => import("../views/About.vue")
+  },
+  {
+    path: "/parkingspot",
+    name: "Parkingspot",
+    component: () => import("../views/Parkingspot")
   }
 ];
 
