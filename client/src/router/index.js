@@ -44,6 +44,12 @@ const routes = [
     path: "/parkingspot",
     name: "Parkingspot",
     component: () => import("../views/Parkingspot")
+  },
+
+  {
+    path: "/Submitparkingspot",
+    name: "Submitparkingspot",
+    component: () => import("../views/Submitparkingspot.vue")
   }
 ];
 
