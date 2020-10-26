@@ -45,41 +45,48 @@
     <div class="notification is-link is-light mt-5" v-if="usersInDb">
       <p>Siden dette er en demo - så kan du logge inn med disse:</p>
       <p v-for="(user, i) in usersInDb" :key="i">
-        {{ user.username }} - {{ user.password }}
+        {{ user.email }} - {{ user.password }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "login",
   data() {
     return {
       username: "",
       password: "",
-      loginFail: false
+      loginFail: false,
+      usersInDb: []
     };
+  },
+  created() {
+    this.getUsers();
   },
   methods: {
     async login() {
       this.$store
         .dispatch("retriveToken", {
-          username: this.username,
+          email: this.username,
           password: this.password
         })
-        .then((response) => {
-          if (response) this.$router.push({ name: "Secret" });
+        .then(() => {
+          if (this.loggedIn) this.$router.push({ name: "Secret" });
           else this.loginFail = true;
         });
+    },
+    getUsers() {
+      axios.get(`http://localhost:5000/users/`).then((response) => {
+        this.usersInDb = Object.values(response.data);
+      });
     }
   },
   computed: {
     loggedIn() {
       return this.$store.getters.loggedIn;
-    },
-    usersInDb() {
-      return this.$store.getters.getUsers;
     }
   }
 };
