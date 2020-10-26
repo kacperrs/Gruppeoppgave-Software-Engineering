@@ -1,10 +1,12 @@
 import express from "express";
+import cors from "cors";
 import { errorHandler, notFound } from "./errorHandling.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // ROUTES
 import userRoutes from "./routes/users.js";
