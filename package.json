@@ -22,6 +22,8 @@
   "homepage": "https://github.com/wakeupgrumpy/Software-Engineering#readme",
   "dependencies": {
     "@babel/runtime": "^7.11.2",
+    "axios": "^0.21.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "simple-json-db": "^1.2.2"
   },
