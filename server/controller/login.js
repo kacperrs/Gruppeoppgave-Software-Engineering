@@ -1,27 +1,16 @@
 import { users } from "../db/index.js";
 
 export const processLoginData = (req, res) => {
-  const userCredentials = req.body;
-  if (userCredentials) console.log(userCredentials);
+  const email = req.body.email;
+  const password = req.body.password;
 
-  if (
-    verifyUsernamePassword(userCredentials.username, userCredentials.password)
-  ) {
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(400);
-  }
+  res.sendStatus(verifyUsernamePassword(email, password) ? 200 : 400);
 };
 
-function verifyUsernamePassword(username, password) {
-  console.log("verify:", username, password);
-  users.find((obj, i) => {
-    if (obj.username === username && obj.password === password) {
-      console.log("Sucess!");
-      return true;
-    } else {
-      console.log("Fail!");
-      return false;
-    }
+const verifyUsernamePassword = (email, password) => {
+  const userArray = Object.values(users.get());
+
+  return userArray.find((user) => {
+    if (user.email === email && user.password === password) return true;
   });
-}
+};

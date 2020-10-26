@@ -1,7 +1,5 @@
 import supertest from "supertest";
 import { app } from "../server";
-import { users } from "../db/index.js";
-import { resolvePlugin } from "@babel/core";
 
 const toUrlEncoded = (obj) =>
   Object.keys(obj)
