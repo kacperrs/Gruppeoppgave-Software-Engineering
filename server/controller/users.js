@@ -39,6 +39,7 @@ export const createUser = (req, res) => {
   res.send(newUser);
 };
 
+// NEED FIX HERE
 export const updateUser = (req, res) => {
   const { id } = req.params;
   const { firstname, lastname, email } = req.body;

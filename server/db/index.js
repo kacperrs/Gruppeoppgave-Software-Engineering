@@ -1,14 +1,15 @@
 import JSONdb from "simple-json-db";
 import crypto from "crypto";
 
-const userDb = new JSONdb("server/db/users.json");
-const parking = new JSONdb("server/db/parking.json");
-
 // importer tabell filene
-//import users from "./users.js";
+const userDb = new JSONdb("server/db/storage/users.json");
+const spots = new JSONdb("server/db/storage/parking_spots.json");
 
-// const users = userDb.get("users");
-// Lage bruker database med uid som key ??
+// TODO:
+// Lag et objekt, new dbFunction(database)
+// slipper å duplisre kode samme logikk??
+
+// BRUKERE
 const users = {
   get: (uid) => {
     return uid ? userDb.get(uid) : userDb.JSON();
@@ -27,14 +28,34 @@ const users = {
       .digest("hex");
 
     const user = JSON.stringify(userdata);
-    // NEED TO CHECK IF USER ALLREADY IN DB!
+    // TODO: NEED TO CHECK IF USER ALLREADY IN DB!
+    // Do that in controller??
     userDb.set(uid, user);
     return { id: uid };
   }
 };
 
-// eksporter dem her
-export { users };
+// PARKING SPOTS
+const parkingSpot = {
+  get: (uid) => {
+    return uid ? spots.get(uid) : spots.JSON();
+  },
+  delete: (uid) => {
+    return uid ? spots.delete(uid) : false;
+  },
+  create: (spotdata) => {
+    const parkingSpotsInDb = Object.keys(spots.JSON()).length + 1;
 
-// Dette gjør slik at vi kan importere denne filen
-// å få tilgang til de tabellen vi trenger.
+    const uid = crypto
+      .createHash("md5")
+      .update(parkingSpotsInDb.toString())
+      .digest("hex");
+
+    const spot = JSON.stringify(spotdata);
+    spots.set(uid, spot);
+    return { id: uid };
+  }
+};
+
+// eksporter dem her
+export { users, parkingSpot };
