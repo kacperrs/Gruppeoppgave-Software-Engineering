@@ -4,6 +4,8 @@
         "lastname": "Olav",
         "email": "Olav@kongen.no",
         "password": "password",
+        "phone": "",
+        "isFirm": false,
         "isAdmin": true
     },
     "c81e728d9d4c2f636f067f89cc14862c": {
@@ -11,6 +13,8 @@
         "lastname": "Normann",
         "email": "ola.normann@bring.no",
         "password": "welcome",
+        "phone": "132456",
+        "isFirm": true,
         "isAdmin": false
     },
     "eccbc87e4b5ce2fe28308fd9f2a7baf3": {
@@ -18,6 +22,8 @@
         "lastname": "Normann",
         "email": "kari.normann@posten.no",
         "password": "welcome",
+        "phone": "132456",
+        "isFirm": false,
         "isAdmin": false
     }
 }

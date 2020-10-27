@@ -26,11 +26,9 @@ const users = {
       .createHash("md5")
       .update(usersInDb.toString())
       .digest("hex");
-
-    const user = JSON.stringify(userdata);
     // TODO: NEED TO CHECK IF USER ALLREADY IN DB!
     // Do that in controller??
-    userDb.set(uid, user);
+    userDb.set(uid, userdata);
     return { id: uid };
   }
 };

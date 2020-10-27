@@ -29,8 +29,12 @@ export const createUser = (req, res) => {
     firstname: formData.firstname,
     lastname: formData.lastname,
     email: formData.email,
-    password: formData.password
+    password: formData.password,
+    phone: formData.phone,
+    isFirm: formData.isFirm == "true" ? true : false
   };
+
+  // NEED TO REMOVE quotes FROM isFirm
   // create new user in db
   const newUser = users.create(user);
   // set status code if success

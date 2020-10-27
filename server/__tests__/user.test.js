@@ -57,7 +57,9 @@ describe("POST /users", () => {
       firstname: "James",
       lastname: "Bond",
       email: "007@MI6.co.uk",
-      password: "shaken-not-stirred"
+      password: "shaken-not-stirred",
+      phone: "815 493 00",
+      isFirm: true
     };
     const response = await supertest(app)
       .post(`/users`)
@@ -66,9 +68,7 @@ describe("POST /users", () => {
       .expect(201);
 
     const newUserId = response.body.id;
-    expect(JSON.parse(users.get(newUserId))).toEqual(
-      expect.objectContaining(agent)
-    );
+    expect(users.get(newUserId)).toEqual(expect.objectContaining(agent));
 
     // Cleanup - remove user
     users.delete(newUserId);
