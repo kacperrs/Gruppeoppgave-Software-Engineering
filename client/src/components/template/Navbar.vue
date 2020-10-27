@@ -23,6 +23,7 @@
             <router-link to="/logout" class="button is-light" v-if="loggedIn">
               Logg ut
             </router-link>
+            <router-link to="/parkingspot" class="button is-primary" v-if="loggedIn"> Search Parkingspot</router-link>
           </div>
         </div>
       </div>
