@@ -19,7 +19,9 @@ export default new Vuex.Store({
         .post("http://localhost:5000/login", credentials)
         .then((response) => {
           if (response.status === 200) {
-            const token = credentials.email;
+            const token = response.data;
+
+            console.log(response);
 
             localStorage.setItem("access_token", token);
             state.commit("setAccessToken", token);

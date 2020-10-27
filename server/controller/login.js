@@ -4,13 +4,18 @@ export const processLoginData = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  res.sendStatus(verifyUsernamePassword(email, password) ? 200 : 400);
+  const loginSuccess = verifyUsernamePassword(email, password);
+
+  res.status(loginSuccess ? 200 : 400);
+  res.send(loginSuccess);
 };
 
 const verifyUsernamePassword = (email, password) => {
-  const userArray = Object.values(users.get());
+  const userArray = Object.entries(users.get());
 
-  return userArray.find((user) => {
-    if (user.email === email && user.password === password) return true;
+  const foundUser = userArray.find((user, i) => {
+    if (user[1].email === email && user[1].password === password) return true;
   });
+
+  return foundUser ? foundUser[0] : false;
 };
