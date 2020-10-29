@@ -51,12 +51,11 @@ export const getUserSpots = (req, res) => {
 
 // NEED FIX HERE
 export const updateUser = (req, res) => {
-  const { id } = req.params;
-  const { firstname, lastname, email } = req.body;
+  const uid = req.params.id;
+  const userdata = req.body;
 
-  const user = users[id];
+  // Sjekket at uid faktisk er en bruker i db - ellers lages en ny bruker!
+  const updateUser = users.update(uid, userdata);
 
-  if (firstname) user.firstname = firstname;
-  if (lastname) user.lastname = lastname;
-  if (email) user.email;
+  res.sendStatus(updateUser ? 200 : 500);
 };

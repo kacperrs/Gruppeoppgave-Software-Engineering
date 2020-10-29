@@ -17,7 +17,7 @@ router.get("/", getUsers);
 router.get("/:id", getUser);
 router.delete("/:id", deleteUser);
 router.post("/", createUser);
-router.patch("/:id", updateUser);
+router.put("/:id", updateUser);
 router.get("/spots/:id/", getUserSpots);
 
 export default router;

@@ -1,7 +1,7 @@
 <template>
   <div class="profile">
     <p class="title">Rediger profil</p>
-    <form action="#" @submit.prevent="updateProfile">
+    <form action="#" @submit.prevent="updateProfile" v-show="!updateSuccess">
       <!-- For og Etternavn -->
       <div class="field is-horizontal">
         <div class="field-label is-normal">
@@ -110,17 +110,29 @@
         <div class="field-body">
           <div class="field">
             <p class="control">
-              <button
-                class="button is-info mt-5"
-                v-on:click.stop.prevent="page.editProfile = !page.editProfile"
-              >
+              <button class="button is-info mt-5">
                 Oppdater profil
+              </button>
+              <button
+                class="button is-danger mt-5 ml-3"
+                v-on:click.prevent.stop="
+                  speak('Trenger popup med: er du sikker, så slett bruker')
+                "
+              >
+                Slett bruker
               </button>
             </p>
           </div>
         </div>
       </div>
     </form>
+
+    <div class="notification is-success" v-show="updateSuccess">
+      <p class="title">👏 Takk {{ user.firstname }}.</p>
+      <p>
+        Din brukerkonto er nå oppdatert.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -130,7 +142,7 @@ export default {
   name: "EditProfile",
   data() {
     return {
-      registrationSuccess: false,
+      updateSuccess: false,
       user: {}
     };
   },
@@ -147,10 +159,24 @@ export default {
 
           this.user = response.data;
         });
+    },
+    async updateProfile() {
+      await axios
+        .put(`http://localhost:5000/users/${this.token}`, this.user)
+        .then((response) => {
+          if (response.status === 200) {
+            this.updateSuccess = true;
+            setTimeout(() => this.$router.push({ path: "/profile" }), 5000);
+          }
+          if (response.status === 500) {
+            // TODO: Trenger en visuell beskjed hvis feil oppstår!
+            console.log("FEILER!!");
+          }
+        });
+    },
+    speak: (message) => {
+      alert(message);
     }
-  },
-  speak: (message) => {
-    alert(message);
   },
   computed: {
     token() {
