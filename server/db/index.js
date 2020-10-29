@@ -30,6 +30,9 @@ const users = {
     // Do that in controller??
     userDb.set(uid, userdata);
     return { id: uid };
+  },
+  update: (id, userdata) => {
+    return userDb.set(id, userdata) ? false : true;
   }
 };
 
@@ -39,7 +42,7 @@ const parkingSpot = {
     return id ? spots.get(id) : spots.JSON();
   },
   delete: (id) => {
-    return uid ? spots.delete(id) : false;
+    return id ? spots.delete(id) : false;
   },
   create: (spotdata) => {
     const parkingSpotsInDb = Object.keys(spots.JSON()).length + 1;
@@ -52,9 +55,6 @@ const parkingSpot = {
     const spot = JSON.stringify(spotdata);
     spots.set(id, spot);
     return { id: id };
-  },
-  getUserSpots: (uid) => {
-    const allspots = spots.JSON();
   }
 };
 
