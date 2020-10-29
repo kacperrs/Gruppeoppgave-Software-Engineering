@@ -6,44 +6,12 @@
         Du leier ikke ut noen plasser ...
       </p>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Addresse</th>
-            <th>Poststed</th>
-            <th>Timespris</th>
-            <th>Døgnpris</th>
-            <th>Antall plasser</th>
-            <th>Rediger</th>
-          </tr>
-        </thead>
+      <SpotsTable />
 
-        <tbody>
-          <tr v-for="spot in spots" :key="spot[0]">
-            <td>{{ spot[1].address }}</td>
-            <td>{{ spot[1].zipcode }}</td>
-            <td>{{ spot[1].hour_price }}</td>
-            <td>{{ spot[1].day_price }}</td>
-            <td>{{ spot[1].spots }}</td>
-            <td>
-              <button
-                v-on:click="speak('Rediger plassen')"
-                class="button is-small mr-1"
-              >
-                ✏️
-              </button>
-              <button
-                v-on:click="speak('Fjern plassen')"
-                class="button is-small"
-              >
-                ❌
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <button class="button is-primary">
+      <button
+        v-on:click="speak('Lag annonse plassen : kacper')"
+        class="button is-primary mt-5"
+      >
         Legg til parkeringsplass
       </button>
     </div>
@@ -52,8 +20,13 @@
 
 <script>
 import axios from "axios";
+import SpotsTable from "@/components/SpotsTable.vue";
+
 export default {
-  name: "MyPage",
+  name: "MySpots",
+  components: {
+    SpotsTable
+  },
   data() {
     return {
       page: {
