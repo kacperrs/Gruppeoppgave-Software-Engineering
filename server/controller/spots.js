@@ -37,11 +37,11 @@ const spots = {
     res.setHeader("Content-Type", /json/);
     res.send(newSpot);
   },
-  getSpotsZipcode : (req, res) =>{
+  getSpotsZipcode: (req, res) => {
     const { zipcode } = req.params;
     const spotArray = Object.entries(parkingSpot.get());
 
-    res.send(spotArray.filter((spot) => spot[2].zipcode === zipcode));
+    res.send(spotArray.filter((spot) => spot[1].zipcode === zipcode));
   }
 };
 /* const getSpotsZipcode = (req, res) =>{

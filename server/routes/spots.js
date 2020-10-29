@@ -1,7 +1,7 @@
 import express from "express";
 
 import { spots } from "../controller/spots.js";
-import {getUserSpots} from "../controller/users";
+// import {getUserSpots} from "../controller/users";
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get("/", spots.all);
 router.get("/:id", spots.get);
 router.delete("/:id", spots.delete);
 router.post("/", spots.create);
-router.get("/spots/:zipcode/", spots.getUserSpots);
+router.get("/location/:zipcode/", spots.getSpotsZipcode);
 //router.patch("/:id", spots.);
 
 export default router;
