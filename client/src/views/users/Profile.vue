@@ -4,9 +4,13 @@
     <div class="profile">
       <div class="notification is-info is-light mt-5">
         <p class="subtitle">Din profil</p>
-        <button class="button is-info is-fullwidth">
+        Du er registrert med navnet
+        <span class="has-text-weight-bold"
+          >{{ user.firstname }} {{ user.lastname }}</span
+        >, ønsker du å gjøre endringer i din profil, trkk på knappen.
+        <router-link to="/editprofile" class="button is-info is-fullwidth mt-5">
           Rediger profil
-        </button>
+        </router-link>
       </div>
     </div>
 
