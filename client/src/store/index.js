@@ -20,9 +20,6 @@ export default new Vuex.Store({
         .then((response) => {
           if (response.status === 200) {
             const token = response.data;
-
-            console.log(response);
-
             localStorage.setItem("access_token", token);
             state.commit("setAccessToken", token);
           }
@@ -39,6 +36,6 @@ export default new Vuex.Store({
   modules: {},
   getters: {
     loggedIn: (state) => state.token !== null,
-    getUsers: (state) => state.db.users
+    token: (state) => state.token
   }
 });

@@ -74,7 +74,7 @@ export default {
           password: this.password
         })
         .then(() => {
-          if (this.loggedIn) this.$router.push({ name: "Secret" });
+          if (this.loggedIn) this.$router.push({ name: "Profile" });
           else this.loginFail = true;
         });
     },
