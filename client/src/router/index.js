@@ -48,6 +48,11 @@ const routes = [
     path: "/myspots",
     name: "Myspots",
     component: () => import("../views/parking/Myspots.vue")
+  },
+  {
+    path: "/editprofile",
+    name: "EditProfile",
+    component: () => import("../views/users/EditProfile.vue")
   }
 ];
 

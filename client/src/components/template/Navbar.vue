@@ -38,7 +38,7 @@
               Historikk
             </router-link>
 
-            <router-link to="/profile" class="navbar-item">
+            <router-link to="/editprofile" class="navbar-item">
               Rediger profil
             </router-link>
 
