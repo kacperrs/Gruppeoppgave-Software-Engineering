@@ -42,11 +42,18 @@
         Feil brukernavn eller passord!
       </div>
     </form>
-    <div class="notification is-link is-light mt-5" v-if="usersInDb">
+    <div class="notification is-link is-light mt-5" v-if="usersInDb.length > 0">
       <p>Siden dette er en demo - så kan du logge inn med disse:</p>
-      <p v-for="(user, i) in usersInDb" :key="i">
-        {{ user.email }} - {{ user.password }}
-      </p>
+      <table class="">
+        <thead>
+          <th>Brukernavn</th>
+          <th>Passord</th>
+        </thead>
+        <tr v-for="(user, i) in usersInDb" :key="i">
+          <td>{{ user.email }}</td>
+          <td>{{ user.password }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>

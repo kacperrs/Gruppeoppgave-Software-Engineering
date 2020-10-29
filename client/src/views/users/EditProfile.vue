@@ -166,7 +166,7 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.updateSuccess = true;
-            setTimeout(() => this.$router.push({ path: "/profile" }), 5000);
+            setTimeout(() => this.$router.push({ path: "/profile" }), 3000);
           }
           if (response.status === 500) {
             // TODO: Trenger en visuell beskjed hvis feil oppstår!
