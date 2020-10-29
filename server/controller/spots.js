@@ -12,6 +12,7 @@ const spots = {
       res.send();
     }
   },
+
   delete: (req, res) => {
     const { id } = req.params;
     if (parkingSpot.delete(id)) {
@@ -35,8 +36,20 @@ const spots = {
     res.status(newSpot ? 201 : 500);
     res.setHeader("Content-Type", /json/);
     res.send(newSpot);
+  },
+  getSpotsZipcode : (req, res) =>{
+    const { zipcode } = req.params;
+    const spotArray = Object.entries(parkingSpot.get());
+
+    res.send(spotArray.filter((spot) => spot[2].zipcode === zipcode));
   }
 };
+/* const getSpotsZipcode = (req, res) =>{
+  const { zipcode } = req.params;
+  const spotArray = Object.entries(parkingSpot.get());
+
+  res.send(spotArray.filter((spot) => spot[2].zipcode === zipcode));
+}
 
 /*
 // NEED FIX HERE
