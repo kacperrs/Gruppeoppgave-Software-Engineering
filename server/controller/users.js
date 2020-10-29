@@ -1,4 +1,4 @@
-import { users } from "../db/index.js";
+import { parkingSpot, users } from "../db/index.js";
 
 export const getUsers = (req, res) => {
   res.send(users.get());
@@ -34,13 +34,19 @@ export const createUser = (req, res) => {
     isFirm: formData.isFirm == "true" ? true : false
   };
 
-  // NEED TO REMOVE quotes FROM isFirm
   // create new user in db
   const newUser = users.create(user);
   // set status code if success
   res.status(newUser ? 201 : 500);
   res.setHeader("Content-Type", /json/);
   res.send(newUser);
+};
+
+export const getUserSpots = (req, res) => {
+  const { id } = req.params;
+  const spotArray = Object.entries(parkingSpot.get());
+
+  res.send(spotArray.filter((spot) => spot[1].ownerId === id));
 };
 
 // NEED FIX HERE

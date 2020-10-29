@@ -30,7 +30,7 @@
               Oversikt
             </router-link>
 
-            <router-link to="/profile" class="navbar-item">
+            <router-link to="/myspots" class="navbar-item">
               Mine parkeringsplasser
             </router-link>
 

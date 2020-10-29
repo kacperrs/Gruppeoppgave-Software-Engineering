@@ -35,23 +35,26 @@ const users = {
 
 // PARKING SPOTS
 const parkingSpot = {
-  get: (uid) => {
-    return uid ? spots.get(uid) : spots.JSON();
+  get: (id) => {
+    return id ? spots.get(id) : spots.JSON();
   },
-  delete: (uid) => {
-    return uid ? spots.delete(uid) : false;
+  delete: (id) => {
+    return uid ? spots.delete(id) : false;
   },
   create: (spotdata) => {
     const parkingSpotsInDb = Object.keys(spots.JSON()).length + 1;
 
-    const uid = crypto
+    const id = crypto
       .createHash("md5")
       .update(parkingSpotsInDb.toString())
       .digest("hex");
 
     const spot = JSON.stringify(spotdata);
-    spots.set(uid, spot);
-    return { id: uid };
+    spots.set(id, spot);
+    return { id: id };
+  },
+  getUserSpots: (uid) => {
+    const allspots = spots.JSON();
   }
 };
 
