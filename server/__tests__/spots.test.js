@@ -54,7 +54,7 @@ describe("POST /spots", () => {
       .expect(201);
 
     const newParkingSpotId = response.body.id;
-    expect(JSON.parse(parkingSpot.get(newParkingSpotId))).toEqual(
+    expect(parkingSpot.get(newParkingSpotId)).toEqual(
       expect.objectContaining(location)
     );
 
