@@ -1,63 +1,194 @@
 <template>
-<div class= "Submitparkingspot"> 
 
-	<div class="description">
-      Submit a parking spot for rent!
+
+	<div class="register-form">
+    <form action="#" @submit.prevent="register" v-if="!registrationSuccess">
+      <p class="title">Submit Parkingspot</p>
+
+
+<div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Address</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Storgata 11"
+                v-model="form.address"
+                required
+              />
+            </p>
+          </div>
+        </div>
+    </div>
+ 
+
+
+        <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Zipcode</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+                placeholder="1890"
+                v-model="form.zipcode"
+                required
+              />
+            </p>
+          </div>
+        </div>
     </div>
 
-    <form id="submitform">
-    <div class="is-justify-content-center data-list-input">
-    <select class="data-list-input" style="position: absolute; width: 200px " onchange="document.getElementById('displayValue').value=this.options[this.selectedIndex].text;
-    document.getElementById('idValue').value=this.options[this.selectedIndex].value;" v-model="places">
-      <option></option>
-      <option value="Tistedalen">Tistedalen</option>
-      <option value="Brødløs"> Brødløs </option>
-      <option value="Sentrum">Sentrum</option>
-      <option value="Busterud"> Busterud </option>
-      <option value="Berg">Berg</option>
-      <option value="Festningen"> Festingen</option>
-      <option value="Kornsjø"> Kornsjø </option>
-      <option value="Isebakke"> Isebakke </option>
-      <option value="Remmen"> Remmen </option>
-      <option value="Prestebakke"> Prestebakke</option>
-    </select>
-		</div>
-  
+        <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Hour price</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+                placeholder="100"
+                v-model="form.hour_price"
+                required
+              />
+            </p>
+          </div>
+        </div>
+    </div>
 
-	
+        <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Day price</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+                placeholder="600"
+                v-model="form.day_price"
+                required
+              />
+            </p>
+          </div>
+        </div>
+    </div>
 
-<br>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Number of spots</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+                placeholder="5"
+                v-model="form.spots"
+                required
+              />
+            </p>
+          </div>
+        </div>
+    </div>
 
-        <label for="street">Street: </label>
-    <input type="text" id="street" name="Street"> <br>
-     <label for="streetnumber">Street number: </label>
-    <input type="text" id ="streetnumber" name ="streetnumber"> <br>
-    <label for="rentablefrom">Rentable from: </label>
-    <input type="date" id = "rentablefrom" name ="rentablefrom"> <br>
-    <label for="rentableto">Rentable to: </label>
-    <input type="date" id = "rentableto" name = "rentableto"> <br>
-    <label for="price">Price: </label>
-    <input type="number" id = "price" name = "price"> <br>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label"></label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <button v-on:click="submit" class="button is-success is-medium is-fullwidth mt-5">
+                Submit Parkingspot
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
 
 </form>
 
- <button v-on:click="submit">Submit parking spot</button>
+<div class="notification is-success" v-show="registrationSuccess">
+      <p class="title">👏 Thank you!</p>
+      <p>
+        Your parking spot is now submitted.
+      </p>
+    </div>
 
-	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
 </template>
 
 <script>
+import axios from "axios";
 export default {
+	
+  data() {
+    return {
+      form: {
+        address: "",
+      zipcode: "",
+      hour_price: "",
+      day_price: "",
+      spots: "",
+        isFirm: false
+      },
+      registrationSuccess: false
+   
+    };
+  },
+
   methods: {
-    submit: function() {
-      alert('Parking spot submitted!')
+    async register() {
+      await axios
+        .post("http://localhost:5000/spots/", this.form)
+        .then((response) => {
+          if (response.status === 201) {
+            this.registrationSuccess = true;
+          
+          }
+          if (response.status === 500) {
+            // TODO: Trenger en visuell beskjed hvis feil oppstår!
+          }
+        });
     }
+  },
+
+  submit() {
+
+alert('Parking spot submitted!')
   }
-}
+};
+
 </script>
 
 <style scoped>
-
+.register-form {
+  max-width: 80%;
+  margin: 0 auto;
+}
 
 
 
