@@ -8,15 +8,32 @@
       </div>
 
       <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <router-link
-              to="/register"
-              class="button is-primary"
-              v-if="!loggedIn"
-            >
-              Registrer deg
+        <router-link to="/register" class="navbar-item" v-if="!loggedIn">
+          Registrer deg
+        </router-link>
+
+        <router-link to="/login" class="navbar-item" v-if="!loggedIn">
+          Logg inn
+        </router-link>
+
+        <router-link to="/parkingspot" class="navbar-item" v-if="loggedIn"
+          >Finn parkering</router-link
+        >
+
+        <div class="navbar-item has-dropdown is-hoverable" v-if="loggedIn">
+          <a class="navbar-link">
+            Mine sider
+          </a>
+
+          <div class="navbar-dropdown is-boxed">
+            <router-link to="/profile" class="navbar-item">
+              Oversikt
             </router-link>
+
+            <router-link to="/myspots" class="navbar-item">
+              Mine parkeringsplasser
+            </router-link>
+
             <router-link to="/parkingspot" class="button is-primary" v-if="loggedIn">
                 Search Parkingspot
             </router-link>
@@ -25,8 +42,19 @@
             </router-link>
             <router-link to="/login" class="button is-light" v-if="!loggedIn">
               Logg inn
+
+
+            <router-link to="/profile" class="navbar-item">
+              Historikk
+
             </router-link>
-            <router-link to="/logout" class="button is-light" v-if="loggedIn">
+
+            <router-link to="/editprofile" class="navbar-item">
+              Rediger profil
+            </router-link>
+
+            <hr class="navbar-divider" />
+            <router-link to="/logout" class="navbar-item">
               Logg ut
             </router-link>
           </div>

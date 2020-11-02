@@ -3,7 +3,7 @@
     <Navbar />
     <main>
       <div class="content container is-max-desktop">
-        <router-view/>
+        <router-view />
       </div>
     </main>
     <Footer />
@@ -11,20 +11,20 @@
 </template>
 
 <script>
-import Navbar from '@/components/template/Navbar.vue';
-import Footer from '@/components/template/Footer.vue';
+import Navbar from "@/components/template/Navbar.vue";
+import Footer from "@/components/template/Footer.vue";
 
 export default {
   components: {
     Navbar,
-    Footer,
+    Footer
   }
-}
+};
 </script>
 
 <style lang="scss">
 main {
   margin: 2rem 0 2rem 0;
-  min-height: calc(100vh - (232px + 4rem) );
+  min-height: calc(100vh - (232px + 4rem));
 }
 </style>
