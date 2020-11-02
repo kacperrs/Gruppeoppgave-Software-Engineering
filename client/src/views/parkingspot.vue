@@ -1,33 +1,76 @@
 <template>
   <div class="parkingspot">
     <div class="class-use">
-      Find parkingspot in Halden!
+      <h1>Finn parkeringsplasser</h1>
     </div>
     <div class="is-justify-content-center data-list-input lister">
-      <select class="form-control" v-model="selected"  >
-        <option
-            v-for="(option) in parkingspot" v-bind:key="option.ownerID"
-        >
-
-          {{ option.zipcode }} </option>
-
+      <h4>Søk etter stedsnavn her:</h4>
+      <select
+        class="form-control"
+        v-model="selected"
+        @change="onChange($event)"
+      >
+        <option v-for="option in parkingspot" v-bind:key="option.ownerID">
+          {{ option.zipcode }}
+        </option>
       </select>
+
+      <table class="table" v-if="Object.keys(spots).length === 0">
+        <thead>
+        <tr>
+          <th>Addresse</th>
+          <th>Poststed</th>
+          <th>Timespris</th>
+          <th>Døgnpris</th>
+          <th>Antall plasser</th>
+          <th>Link til side</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr v-for="option in parkingspot" v-bind:key="option.ownerID">
+          <td>{{ option.address }}</td>
+          <td>{{ option.zipcode }}</td>
+          <td>{{ option.hour_price }}</td>
+          <td>{{ option.day_price }}</td>
+          <td>{{ option.spots }}</td>
+          <td>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+
     </div>
-    <div>
-      <div v-for="(user) in parkingspot" v-bind:key="user.ownerID">
-        <div v-if="selected == user.zipcode">
 
-          <p>A lovely parkingsspot in {{user.address}}.
-          Hour price : {{user.hour_price}}
-          Day price: {{user.day_price}} </p>
-          <p>
+    <table class="table" v-if="Object.keys(spots).length !== 0">
+      <thead>
+        <tr>
+          <th>Addresse</th>
+          <th>Poststed</th>
+          <th>Timespris</th>
+          <th>Døgnpris</th>
+          <th>Antall plasser</th>
+          <th>Link til side</th>
+        </tr>
+      </thead>
 
-          </p>
-        </div>
+      <tbody>
+        <tr v-for="spot in spots" v-bind:key="spot[0]">
+          <td>{{ spot[1].address }}</td>
+          <td>{{ spot[1].zipcode }}</td>
+          <td>{{ spot[1].hour_price }}</td>
+          <td>{{ spot[1].day_price }}</td>
+          <td>{{ spot[1].spots }}</td>
+          <td>
 
-      </div>
-    </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
 </template>
 
 <script>
@@ -37,20 +80,39 @@ export default {
   data: () => {
     return {
       selected: "",
-      parkingspot: []
-
+      parkingspot: [],
+      spots: {}
     };
   },
-  created(){
-    this.getSpot()
+  created() {
+    this.getSpot();
+    this.getSpotsZipcode();
   },
   methods: {
     getSpot() {
       axios.get(`http://localhost:5000/spots/`).then((response) => {
         this.parkingspot = Object.values(response.data);
       });
+    },
+    getSpotsZipcode(zipcode) {
+      axios
+        .get(`http://localhost:5000/spots/location/${zipcode}`)
+        .then((response) => {
+          console.log(response.data);
+          this.spots = response.data;
+        });
+    },
+    onChange(event) {
+      this.getSpotsZipcode(event.target.value);
+      this.selected = event.target.value;
+      console.log(event.target.value);
     }
   },
+  computed: {
+    token() {
+      return this.$store.getters.token;
+    }
+  }
 };
 </script>
 
