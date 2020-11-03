@@ -14,5 +14,21 @@
         "hour_price": "20",
         "day_price": "800",
         "spots": "1"
+    },
+    "eccbc87e4b5ce2fe28308fd9f2a7baf3": {
+        "ownerId": "eccbc87e4b5ce2fe28308fd9f2a7baf3",
+        "address": "Rådyrvegen 8",
+        "zipcode": "Frogner",
+        "hour_price": "50",
+        "day_price": "400",
+        "spots": "2"
+    },
+    "a87ff679a2f3e71d9181a67b7542122c": {
+        "ownerId": "c4ca4238a0b923820dcc509a6f75849b",
+        "address": "Sinsenveien 10",
+        "zipcode": "Sinsen",
+        "hour_price": "50",
+        "day_price": "400",
+        "spots": "2"
     }
 }
