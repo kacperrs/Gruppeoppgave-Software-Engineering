@@ -14,13 +14,36 @@
           {{ option.zipcode }}
         </option>
       </select>
-      <div
-        class="notification is-danger is-light mt-5"
-        v-if="Object.keys(spots).length === 0"
-      >
-        Det er ikke noe plasser ute
-      </div>
+
+      <table class="table" v-if="Object.keys(spots).length === 0">
+        <thead>
+        <tr>
+          <th>Addresse</th>
+          <th>Poststed</th>
+          <th>Timespris</th>
+          <th>Døgnpris</th>
+          <th>Antall plasser</th>
+          <th>Link til side</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr v-for="option in parkingspot" v-bind:key="option.ownerID">
+          <td>{{ option.address }}</td>
+          <td>{{ option.zipcode }}</td>
+          <td>{{ option.hour_price }}</td>
+          <td>{{ option.day_price }}</td>
+          <td>{{ option.spots }}</td>
+          <td>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+
     </div>
+
     <table class="table" v-if="Object.keys(spots).length !== 0">
       <thead>
         <tr>
@@ -41,15 +64,13 @@
           <td>{{ spot[1].day_price }}</td>
           <td>{{ spot[1].spots }}</td>
           <td>
-            <button
-              v-on:click="speak('Trykk linken')"
-              class="button is-small mr-1"
-            ></button>
+
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+
 </template>
 
 <script>
