@@ -64,3 +64,20 @@ describe("POST /spots", () => {
     expect(dbSpots.get(newParkingSpotId)).toBeUndefined();
   });
 });
+
+describe("GET /spots/location/<zipcode>", () => {
+  it("Should respond with parkingspot filterd by zipcode", async () => {
+    const zipcode = "Oslo";
+
+    const respond = await supertest(app)
+      .get(`/spots/location/${zipcode}`)
+      .expect("Content-Type", /json/)
+      .expect(200);
+
+    const recivedArrayContaining = respond.body.every(
+      (item) => item[1].zipcode === zipcode
+    );
+
+    expect(recivedArrayContaining).toBe(true);
+  });
+});
