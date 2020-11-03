@@ -5,6 +5,11 @@ import crypto from "crypto";
 const userDb = new JSONdb("db/storage/users.json");
 const spots = new JSONdb("db/storage/parking_spots.json");
 
+const dbTest = {
+  users: userDb,
+  spots: spots
+};
+
 class dbFunctions {
   constructor(database) {
     this.get = (id) => (id ? database.get(id) : database.JSON());
@@ -24,8 +29,8 @@ class dbFunctions {
   }
 }
 
-const users = new dbFunctions(userDb);
-const parkingSpot = new dbFunctions(spots);
+const dbUsers = new dbFunctions(userDb);
+const dbSpots = new dbFunctions(spots);
 
 // eksporter dem her
-export { users, parkingSpot };
+export { dbUsers, dbSpots, dbTest };

@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import { app } from "../server";
-import { parkingSpot } from "../db/index.js";
+import { dbSpots } from "../db/index.js";
 
 const toUrlEncoded = (obj) =>
   Object.keys(obj)
@@ -14,7 +14,7 @@ describe("GET /spots", () => {
       .expect("Content-Type", /json/)
       .expect(200);
 
-    expect(response.body).toEqual(parkingSpot.get());
+    expect(response.body).toEqual(dbSpots.get());
   });
 });
 
@@ -27,7 +27,7 @@ describe("GET /spots/<id>", () => {
       .get(`/spots/${id}`)
       .expect("Content-Type", /json/)
       .expect(200);
-    expect(response.body).toEqual(parkingSpot.get(id));
+    expect(response.body).toEqual(dbSpots.get(id));
   });
 
   it("Should respond with 204 if spot not in database", async () => {
@@ -54,13 +54,13 @@ describe("POST /spots", () => {
       .expect(201);
 
     const newParkingSpotId = response.body.id;
-    expect(parkingSpot.get(newParkingSpotId)).toEqual(
+    expect(dbSpots.get(newParkingSpotId)).toEqual(
       expect.objectContaining(location)
     );
 
     // Cleanup - remove parkingspot
-    parkingSpot.delete(newParkingSpotId);
+    dbSpots.delete(newParkingSpotId);
     // Verify cleanup
-    expect(parkingSpot.get(newParkingSpotId)).toBeUndefined();
+    expect(dbSpots.get(newParkingSpotId)).toBeUndefined();
   });
 });

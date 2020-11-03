@@ -1,12 +1,12 @@
-import { parkingSpot } from "../db/index.js";
+import { dbSpots } from "../db/index.js";
 
 const spots = {
   all: (req, res) => {
-    res.send(parkingSpot.get());
+    res.send(dbSpots.get());
   },
   get: (req, res) => {
     const { id } = req.params;
-    if (parkingSpot.get(id)) res.send(parkingSpot.get(id));
+    if (dbSpots.get(id)) res.send(dbSpots.get(id));
     else {
       res.status(204);
       res.send();
@@ -15,7 +15,7 @@ const spots = {
 
   delete: (req, res) => {
     const { id } = req.params;
-    if (parkingSpot.delete(id)) {
+    if (dbSpots.delete(id)) {
       res.send(`Plass med id ${id} ble fjernet fra databasen.`);
     }
   },
@@ -31,7 +31,7 @@ const spots = {
       spots: formData.spots
     };
 
-    const newSpot = parkingSpot.create(spot);
+    const newSpot = dbSpots.create(spot);
     // set status code if success
     res.status(newSpot ? 201 : 500);
     res.setHeader("Content-Type", /json/);
@@ -39,7 +39,7 @@ const spots = {
   },
   getSpotsZipcode: (req, res) => {
     const { zipcode } = req.params;
-    const spotArray = Object.entries(parkingSpot.get());
+    const spotArray = Object.entries(dbSpots.get());
 
     res.send(spotArray.filter((spot) => spot[1].zipcode === zipcode));
   }
