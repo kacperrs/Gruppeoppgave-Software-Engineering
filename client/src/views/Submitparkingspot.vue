@@ -148,6 +148,7 @@ export default {
   data() {
     return {
       form: {
+        ownerId: this.token,
         address: "",
       zipcode: "",
       hour_price: "",
@@ -167,12 +168,20 @@ export default {
         .then((response) => {
           if (response.status === 201) {
             this.registrationSuccess = true;
+            console.log("data har blitt sendt inn");
           
           }
           if (response.status === 500) {
-            // TODO: Trenger en visuell beskjed hvis feil oppstår!
+           console.log("Det har oppstått en feil!");
           }
         });
+    }
+  },
+
+
+  computed: {
+    token() {
+      return this.$store.getters.token;
     }
   },
 
