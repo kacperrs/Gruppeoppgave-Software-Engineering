@@ -42,44 +42,58 @@
         Feil brukernavn eller passord!
       </div>
     </form>
-    <div class="notification is-link is-light mt-5" v-if="usersInDb">
+    <div class="notification is-link is-light mt-5" v-if="usersInDb.length > 0">
       <p>Siden dette er en demo - så kan du logge inn med disse:</p>
-      <p v-for="(user, i) in usersInDb" :key="i">
-        {{ user.username }} - {{ user.password }}
-      </p>
+      <table class="">
+        <thead>
+          <th>Brukernavn</th>
+          <th>Passord</th>
+        </thead>
+        <tr v-for="(user, i) in usersInDb" :key="i">
+          <td>{{ user.email }}</td>
+          <td>{{ user.password }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "login",
   data() {
     return {
       username: "",
       password: "",
-      loginFail: false
+      loginFail: false,
+      usersInDb: []
     };
+  },
+  created() {
+    this.getUsers();
   },
   methods: {
     async login() {
       this.$store
         .dispatch("retriveToken", {
-          username: this.username,
+          email: this.username,
           password: this.password
         })
-        .then((response) => {
-          if (response) this.$router.push({ name: "Secret" });
+        .then(() => {
+          if (this.loggedIn) this.$router.push({ name: "Profile" });
           else this.loginFail = true;
         });
+    },
+    getUsers() {
+      axios.get(`http://localhost:5000/users/`).then((response) => {
+        this.usersInDb = Object.values(response.data);
+      });
     }
   },
   computed: {
     loggedIn() {
       return this.$store.getters.loggedIn;
-    },
-    usersInDb() {
-      return this.$store.getters.getUsers;
     }
   }
 };

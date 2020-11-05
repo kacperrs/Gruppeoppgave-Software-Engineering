@@ -1,0 +1,26 @@
+{
+    "c4ca4238a0b923820dcc509a6f75849b": {
+        "ownerId": "c4ca4238a0b923820dcc509a6f75849b",
+        "address": "Slottsplassen 1",
+        "zipcode": "Oslo",
+        "hour_price": "50",
+        "day_price": "200",
+        "spots": "10"
+    },
+    "c81e728d9d4c2f636f067f89cc14862c": {
+        "ownerId": "c81e728d9d4c2f636f067f89cc14862c",
+        "address": "Stortinget 13",
+        "zipcode": "Oslo",
+        "hour_price": "20",
+        "day_price": "800",
+        "spots": "1"
+    },
+    "eccbc87e4b5ce2fe28308fd9f2a7baf3": {
+        "ownerId": "eccbc87e4b5ce2fe28308fd9f2a7baf3",
+        "address": "Rådyrvegen 8",
+        "zipcode": "Frogner",
+        "hour_price": "50",
+        "day_price": "400",
+        "spots": "2"
+    }
+}

@@ -36,6 +36,7 @@ const routes = [
     component: () => import("../views/users/Logout.vue")
   },
   {
+
     path: "/secret",
     name: "Secret",
     component: () => import("../views/About.vue")
@@ -44,6 +45,32 @@ const routes = [
     path: "/parkingspot",
     name: "Parkingspot",
     component: () => import("../views/Parkingspot")
+  },
+
+  {
+    path: "/Submitparkingspot",
+    name: "Submitparkingspot",
+    component: () => import("../views/Submitparkingspot.vue")
+
+    path: "/profile",
+    name: "Profile",
+    component: () => import("../views/users/Profile.vue")
+  },
+  {
+    path: "/parkingspot",
+    name: "parkingspot",
+    component: () => import("../views/parkingspot.vue")
+  },
+  {
+    path: "/myspots",
+    name: "Myspots",
+    component: () => import("../views/parking/Myspots.vue")
+  },
+  {
+    path: "/editprofile",
+    name: "EditProfile",
+    component: () => import("../views/users/EditProfile.vue")
+
   }
 ];
 

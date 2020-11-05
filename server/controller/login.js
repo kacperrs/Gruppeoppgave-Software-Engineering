@@ -1,36 +1,21 @@
-const users = [
-  {
-    username: "admin",
-    password: "password",
-  },
-  {
-    username: "bruker",
-    password: "welcome",
-  },
-];
+import { users } from "../db/index.js";
 
 export const processLoginData = (req, res) => {
-  const userCredentials = req.body;
-  if (userCredentials) console.log(userCredentials);
+  const email = req.body.email;
+  const password = req.body.password;
 
-  if (
-    verifyUsernamePassword(userCredentials.username, userCredentials.password)
-  ) {
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(400);
-  }
+  const loginSuccess = verifyUsernamePassword(email, password);
+
+  res.status(loginSuccess ? 200 : 400);
+  res.send(loginSuccess);
 };
 
-function verifyUsernamePassword(username, password) {
-  console.log("verify:", username, password);
-  users.find((obj, i) => {
-    if (obj.username === username && obj.password === password) {
-      console.log("Sucess!");
-      return true;
-    } else {
-      console.log("Fail!");
-      return false;
-    }
+const verifyUsernamePassword = (email, password) => {
+  const userArray = Object.entries(users.get());
+
+  const foundUser = userArray.find((user, i) => {
+    if (user[1].email === email && user[1].password === password) return true;
   });
-}
+
+  return foundUser ? foundUser[0] : false;
+};
