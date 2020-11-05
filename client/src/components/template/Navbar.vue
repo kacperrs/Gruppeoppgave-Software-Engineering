@@ -34,15 +34,11 @@
               Mine parkeringsplasser
             </router-link>
 
-            <router-link to="/parkingspot" class="button is-primary" v-if="loggedIn">
-                Search Parkingspot
-            </router-link>
-            <router-link to="/Submitparkingspot" class="button is-primary" v-if="loggedIn">
+            
+            <router-link to="/Submitparkingspot" class="navbar-item">
                 Submit parkingspot
             </router-link>
-            <router-link to="/login" class="button is-light" v-if="!loggedIn">
-              Logg inn
-
+            
 
             <router-link to="/profile" class="navbar-item">
               Historikk
