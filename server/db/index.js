@@ -52,8 +52,7 @@ const parkingSpot = {
       .update(parkingSpotsInDb.toString())
       .digest("hex");
 
-    const spot = JSON.stringify(spotdata);
-    spots.set(id, spot);
+    spots.set(id, spotdata);
     return { id: id };
   }
 };

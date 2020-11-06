@@ -2,7 +2,7 @@
 
 
 	<div class="register-form">
-    <form action="#" @submit.prevent="register" v-if="!registrationSuccess">
+    <form action="#" @submit.prevent="submit" v-if="!registrationSuccess">
       <p class="title">Submit Parkingspot</p>
 
 
@@ -111,7 +111,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control">
-              <button v-on:click="submit" class="button is-success is-medium is-fullwidth mt-5">
+              <button  class="button is-success is-medium is-fullwidth mt-5">
                 Submit Parkingspot
               </button>
             </p>
@@ -148,7 +148,7 @@ export default {
   data() {
     return {
       form: {
-        ownerId: this.token,
+        ownerId: "",
         address: "",
       zipcode: "",
       hour_price: "",
@@ -162,9 +162,16 @@ export default {
   },
 
   methods: {
-    async register() {
-      await axios
-        .post("http://localhost:5000/spots/", this.form)
+    async submit() {
+      this.form.ownerId = this.token;
+      console.log(this.form);
+     await axios
+    
+       .post("http://localhost:5000/spots/",this.form, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
         .then((response) => {
           if (response.status === 201) {
             this.registrationSuccess = true;
@@ -175,6 +182,7 @@ export default {
            console.log("Det har oppstått en feil!");
           }
         });
+       
     }
   },
 
