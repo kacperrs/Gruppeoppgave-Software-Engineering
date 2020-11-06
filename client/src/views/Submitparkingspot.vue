@@ -148,21 +148,20 @@ export default {
   data() {
     return {
       form: {
-        ownerId: this.token,
         address: "",
-      zipcode: "",
-      hour_price: "",
-      day_price: "",
-      spots: "",
+        zipcode: "",
+        hour_price: "",
+        day_price: "",
+        spots: "",
         isFirm: false
       },
       registrationSuccess: false
-   
     };
   },
 
   methods: {
     async register() {
+      this.form.ownerId = this.token,
       await axios
         .post("http://localhost:5000/spots/", this.form)
         .then((response) => {
@@ -172,7 +171,7 @@ export default {
           
           }
           if (response.status === 500) {
-           console.log("Det har oppstått en feil!");
+            console.log("Det har oppstått en feil!");
           }
         });
     }
