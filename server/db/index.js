@@ -51,9 +51,10 @@ const parkingSpot = {
       .createHash("md5")
       .update(parkingSpotsInDb.toString())
       .digest("hex");
+    // Kan fjernes - for test!
+    console.log("db.js:", spotdata);
 
-    const spot = JSON.stringify(spotdata);
-    spots.set(id, spot);
+    spots.set(id, spotdata);
     return { id: id };
   }
 };
