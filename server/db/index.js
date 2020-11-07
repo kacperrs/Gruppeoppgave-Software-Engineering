@@ -4,6 +4,7 @@ import crypto from "crypto";
 // importer tabell filene
 const userDb = new JSONdb("server/db/storage/users.json");
 const spots = new JSONdb("server/db/storage/parking_spots.json");
+const paymentDb = new JSONdb("server/db/storage/payments.json");
 
 // TODO:
 // Lag et objekt, new dbFunction(database)
@@ -56,6 +57,14 @@ const parkingSpot = {
     spots.set(id, spot);
     return { id: id };
   }
+};
+
+//BETALINGER
+const payment = {
+  get: (id) => {
+    return id ? paymentDb.get(id) : paymentDb.JSON();
+  },
+
 };
 
 // eksporter dem her

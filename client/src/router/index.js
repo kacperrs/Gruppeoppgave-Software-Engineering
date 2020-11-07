@@ -36,6 +36,11 @@ const routes = [
     component: () => import("../views/users/Logout.vue")
   },
   {
+      path: "/payment",
+      name: "Payment",
+      component: () => import("../views/Payment.vue")
+    },
+  {
 
     path: "/secret",
     name: "Secret",
