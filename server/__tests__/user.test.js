@@ -52,8 +52,8 @@ describe("GET /users/<id>", () => {
 describe("DELETE /users/<id>", () => {
   it("Should remove user from database", async () => {
     const agentData = Object.entries(agent);
-    const userid = agentData[0];
-    const userData = agentData[1];
+    const userid = agentData[0][0];
+    const userData = agentData[0][1];
 
     // Add user directly to db
     dbTest.users.set(userid, userData);
@@ -105,7 +105,6 @@ describe("POST /users", () => {
   });
 });
 
-// TODO: Gjør denne ferdig --
 describe("GET /users/spots/:id", () => {
   it("Should return array containting users spots", async () => {
     // Admin bruker id
@@ -115,8 +114,38 @@ describe("GET /users/spots/:id", () => {
       .get(`/users/spots/${uid}`)
       .expect("Content-Type", /json/)
       .expect(200);
+    
+    const recivedArrayContaining = response.body.every(
+      (item) => item[1].ownerId === uid
+    );
 
-    // const newUserId = response.body.id;
-    // expect(dbUsers.get(newUserId)).toEqual(expect.objectContaining(agentData));
+    expect(recivedArrayContaining).toBe(true);
   });
 });
+
+describe("UPDATE /users/:id", () => {
+  it("Should return true if update successfull.", async () => {
+    // Add agent directly to db - better way to do this?
+    const agentData = Object.entries(agent);
+    const userid = agentData[0][0];
+    const userData = agentData[0][1];
+
+    dbTest.users.set(userid, userData);
+
+    userData.firstname = "Sean";
+    userData.lastname = "Connery";
+
+    const response = await supertest(app)
+      .put(`/users/${userid}`)
+      .send(toUrlEncoded(userData))
+      .expect(200);
+    
+    const updatedUser = dbTest.users.get(userid);
+    expect(updatedUser.firstname == "Sean" && updatedUser.lastname == "Connery").toBe(true);
+
+    // Cleanup - remove user
+    dbUsers.delete(userid);
+    // Verify cleanup
+    expect(dbUsers.get(userid)).toBeUndefined();
+  })
+})

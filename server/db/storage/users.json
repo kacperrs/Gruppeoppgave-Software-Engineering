@@ -25,13 +25,5 @@
         "phone": "132456",
         "isFirm": false,
         "isAdmin": false
-    },
-    "a87ff679a2f3e71d9181a67b7542122c": {
-        "firstname": "James",
-        "lastname": "Bond",
-        "email": "007@MI6.co.uk",
-        "password": "shaken-not-stirred",
-        "phone": "815 493 00",
-        "isFirm": true
     }
 }

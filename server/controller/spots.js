@@ -15,10 +15,20 @@ const spots = {
 
   delete: (req, res) => {
     const { id } = req.params;
+
     if (dbSpots.delete(id)) {
-      res.send(`Plass med id ${id} ble fjernet fra databasen.`);
+      res.status(200);
+      res.json({
+        message: `Plass med id ${id} ble fjernet fra databasen.`
+      });
+    } else {
+      res.status(404);
+      res.json({
+        message: `Plass med id ${id} finnes ikke i databasen.`
+      });
     }
   },
+
   create: (req, res) => {
     const formData = req.body;
 
@@ -44,12 +54,6 @@ const spots = {
     res.send(spotArray.filter((spot) => spot[1].zipcode === zipcode));
   }
 };
-/* const getSpotsZipcode = (req, res) =>{
-  const { zipcode } = req.params;
-  const spotArray = Object.entries(parkingSpot.get());
-
-  res.send(spotArray.filter((spot) => spot[2].zipcode === zipcode));
-}
 
 /*
 // NEED FIX HERE
