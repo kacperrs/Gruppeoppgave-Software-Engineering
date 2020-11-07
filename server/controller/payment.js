@@ -12,4 +12,11 @@ const payments = {
       res.send();
     }
   },
+
+  delete: (req, res) => {
+      const { id } = req.params;
+      if (payment.delete(id)) {
+        res.send(`Betaling ${id} fjernet fra databasen.`);
+      }
+    },
 };

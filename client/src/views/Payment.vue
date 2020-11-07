@@ -1,9 +1,15 @@
 <template>
     <div>
         <h2>Betaling</h2>
+            <div>
+                <p>Her kommer informasjon om hva som skal kjøpes og prisen. Eksempel:</p>
+                <p>[Produkt] + [Pris]</p>
+                <span class="has-text-weight-bold">{{ payment.adress }} {{ payment.zipcode }}</span>
+                <span class="has-text-weight-bold">{{ payment.price }}</span>
+                <!-- Så langt er det bare parkeringsadressen og totalen som vises. Dato/klokkeslett legger vi kanskje til senere? -->
+            </div>
         <div>
-            <p>Her kommer informasjon om hva som skal kjøpes og prisen. Eksempel:</p>
-            <p>[Produkt] - [Pris]</p>
+
         </div>
         <div id="PayBtn">
             <p>Betal med:</p>
