@@ -12,6 +12,7 @@ app.use(cors());
 import userRoutes from "./routes/users.js";
 import loginRoutes from "./routes/login.js";
 import spotsRoutes from "./routes/spots.js";
+import paymentRoutes from "./routes/payment.js";
 
 // Api routes
 // Legges under mappen server/routes
@@ -19,6 +20,7 @@ import spotsRoutes from "./routes/spots.js";
 app.use("/users", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/spots", spotsRoutes);
+app.use("/payment", paymentRoutes);
 
 app.get("/", (req, res) => {
   res.json({

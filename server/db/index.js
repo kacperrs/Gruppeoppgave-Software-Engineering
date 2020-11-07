@@ -64,6 +64,9 @@ const payment = {
   get: (id) => {
     return id ? paymentDb.get(id) : paymentDb.JSON();
   },
+  delete: (id) => {
+      return id ? paymentDb.delete(id) : false;
+    },
 
 };
 
