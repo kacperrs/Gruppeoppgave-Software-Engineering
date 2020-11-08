@@ -66,9 +66,22 @@ const payment = {
   },
   delete: (id) => {
       return id ? paymentDb.delete(id) : false;
-    },
+  },
+  create: (paymentInfo) => {
+      const paymentsDb = Object.keys(paymentDb.JSON()).length + 1;
 
+      const payid = crypto
+        .createHash("md5")
+        .update(paymentsDb.toString())
+        .digest("hex");
+
+      paymentDb.set(payid, paymentInfo);
+      return { id: payid };
+  },
+  update: (payid, paymentInfo) => {
+      return paymentDb.set(payid, paymentInfo) ? false : true;
+  }
 };
 
 // eksporter dem her
-export { users, parkingSpot };
+export { users, parkingSpot, payment };
