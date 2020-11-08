@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="title is-2">Betaling</h2>
+        <p class="title is-2">Betaling</p>
             <div class="field">
                 <!--Her kommer informasjon om hva som skal kjøpes og prisen. Eksempel:-->
                 <!--[Produkt] + [Pris]-->
@@ -17,9 +17,10 @@
             <button id="VipBtn" type="submit" class="button is-success is-medium is-fullwidth>Vipps</button>
             <button id="MasBtn" type="submit" class="button is-success is-medium is-fullwidth>Mastercard</button>
         </div>
+
         <div id="replyDiv" class="field">
-        <p>Her kommer tilbakemelding om betalingen gikk igjennom eller ikke.</p>
-        <p>Denne div'en vil være skjult til betaling gjennomføres, og motsatt vil 'betal med' + knappene bli borte.</p>
+            <p>Her kommer tilbakemelding om betalingen gikk igjennom eller ikke.</p>
+            <p>Denne div'en vil være skjult til betaling gjennomføres, og motsatt vil 'betal med' + knappene bli borte.</p>
         </div>
     </div>
 </template>
