@@ -25,6 +25,14 @@
     <!-- Brukerens plasser -->
     <div class="container mt-5">
       <p class="subtitle has-text-danger">Dine parkeringsplasser</p>
+      <MySpotStats />
+      <!-- <div class="notification is-danger is-light mt-5">
+        <p>Du har <strong>X</strong> steder, med til sammen <strong>X</strong> plasser til leie.</p>
+        <p>Totalt leieinntekter denne måneden: <strong>X</strong>.</p>
+        <router-link to="/" class="button is-danger">
+          Se detaljert oversikt
+        </router-link>
+      </div> -->
       <SpotsTable />
       <button
         v-on:click="speak('Lag annonse plassen : kacper')"
@@ -39,11 +47,13 @@
 <script>
 import axios from "axios";
 import SpotsTable from "@/components/SpotsTable.vue";
+import MySpotStats from "@/components/MySpotStats.vue";
 
 export default {
   name: "Profile",
   components: {
-    SpotsTable
+    SpotsTable,
+    MySpotStats
   },
   data() {
     return {
