@@ -17,9 +17,9 @@
     <!-- Tidligere leieforhold -->
     <div class="notification is-warning is-light mt-5">
       <p class="subtitle">Tidligere leieforhold</p>
-      <button class="button is-warning is-fullwidth">
+      <router-link to="/parkingspot" class="button is-warning is-fullwidth">
         Finn en parkeringsplass
-      </button>
+      </router-link>
     </div>
 
     <!-- Brukerens plasser -->
