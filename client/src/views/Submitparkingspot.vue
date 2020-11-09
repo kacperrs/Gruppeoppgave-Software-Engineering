@@ -148,20 +148,22 @@ export default {
   data() {
     return {
       form: {
+
         ownerId: "",
+
         address: "",
-      zipcode: "",
-      hour_price: "",
-      day_price: "",
-      spots: "",
+        zipcode: "",
+        hour_price: "",
+        day_price: "",
+        spots: "",
         isFirm: false
       },
       registrationSuccess: false
-   
     };
   },
 
   methods: {
+
     async submit() {
       this.form.ownerId = this.token;
       console.log(this.form);
@@ -172,6 +174,12 @@ export default {
             'Content-Type': 'application/json'
           }
         })
+
+    async register() {
+      this.form.ownerId = this.token,
+      await axios
+        .post("http://localhost:5000/spots/", this.form)
+
         .then((response) => {
           if (response.status === 201) {
             this.registrationSuccess = true;
@@ -179,7 +187,7 @@ export default {
           
           }
           if (response.status === 500) {
-           console.log("Det har oppstått en feil!");
+            console.log("Det har oppstått en feil!");
           }
         });
        
