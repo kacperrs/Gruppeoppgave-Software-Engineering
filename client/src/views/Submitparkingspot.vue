@@ -148,9 +148,7 @@ export default {
   data() {
     return {
       form: {
-
         ownerId: "",
-
         address: "",
         zipcode: "",
         hour_price: "",
@@ -174,12 +172,6 @@ export default {
             'Content-Type': 'application/json'
           }
         })
-
-    async register() {
-      this.form.ownerId = this.token,
-      await axios
-        .post("http://localhost:5000/spots/", this.form)
-
         .then((response) => {
           if (response.status === 201) {
             this.registrationSuccess = true;
@@ -187,12 +179,15 @@ export default {
           
           }
           if (response.status === 500) {
-            console.log("Det har oppstått en feil!");
+           console.log("Det har oppstått en feil!");
           }
         });
        
     }
   },
+
+   
+
 
 
   computed: {
@@ -201,10 +196,7 @@ export default {
     }
   },
 
-  submit() {
-
-alert('Parking spot submitted!')
-  }
+  
 };
 
 </script>
