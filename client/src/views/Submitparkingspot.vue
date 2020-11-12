@@ -3,12 +3,12 @@
 
 	<div class="register-form">
     <form action="#" @submit.prevent="submit" v-if="!registrationSuccess">
-      <p class="title">Submit Parkingspot</p>
+      <p class="title">Legg inn parkeringsplass</p>
 
 
 <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Address</label>
+          <label class="label">Adresse</label>
         </div>
         <div class="field-body">
           <div class="field">
@@ -29,7 +29,7 @@
 
         <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Zipcode</label>
+          <label class="label">Postnummer</label>
         </div>
         <div class="field-body">
           <div class="field">
@@ -48,7 +48,7 @@
 
         <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Hour price</label>
+          <label class="label">Pris per time</label>
         </div>
         <div class="field-body">
           <div class="field">
@@ -67,7 +67,7 @@
 
         <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Day price</label>
+          <label class="label">Pris per dag</label>
         </div>
         <div class="field-body">
           <div class="field">
@@ -86,7 +86,7 @@
 
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Number of spots</label>
+          <label class="label">Antall parkeringsplasser</label>
         </div>
         <div class="field-body">
           <div class="field">
@@ -112,7 +112,7 @@
           <div class="field">
             <p class="control">
               <button  class="button is-success is-medium is-fullwidth mt-5">
-                Submit Parkingspot
+                Legg inn parkeringsplass
               </button>
             </p>
           </div>
@@ -122,9 +122,9 @@
 </form>
 
 <div class="notification is-success" v-show="registrationSuccess">
-      <p class="title">👏 Thank you!</p>
+      <p class="title">👏 Takk!</p>
       <p>
-        Your parking spot is now submitted.
+        Parkeringsplassen er nå lagt inn!
       </p>
     </div>
 

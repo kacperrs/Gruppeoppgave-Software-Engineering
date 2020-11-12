@@ -36,7 +36,7 @@
 
             
             <router-link to="/Submitparkingspot" class="navbar-item">
-                Submit parkingspot
+                Legg inn parkeringsplass
             </router-link>
             
 
