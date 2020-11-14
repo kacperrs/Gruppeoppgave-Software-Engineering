@@ -3,7 +3,7 @@
     <div class="class-use">
       <h1>Finn parkeringsplasser</h1>
     </div>
-    <div class="is-justify-content-center data-list-input lister">
+    <div class="container">
       <h4>Søk etter stedsnavn her:</h4>
       <select
         class="form-control"
@@ -11,7 +11,7 @@
         @change="onChange($event)"
       >
         <option v-for="option in parkingspot" v-bind:key="option.ownerID">
-          {{ option.zipcode }}
+          {{ option[1].zipcode }}
         </option>
       </select>
 
@@ -29,12 +29,20 @@
 
         <tbody>
           <tr v-for="option in parkingspot" v-bind:key="option.ownerID">
-            <td>{{ option.address }}</td>
-            <td>{{ option.zipcode }}</td>
-            <td>{{ option.hour_price }}</td>
-            <td>{{ option.day_price }}</td>
-            <td>{{ option.spots }}</td>
-            <td></td>
+            <td>{{ option[1].address }}</td>
+            <td>{{ option[1].zipcode }}</td>
+            <td>{{ option[1].hour_price }}</td>
+            <td>{{ option[1].day_price }}</td>
+            <td>{{ option[1].spots }}</td>
+            <td>
+              <router-link
+                :to="{
+                  name: 'BookParkingspot',
+                  params: { id: option[0] }
+                }"
+                >Sjekk tilgjengelighet</router-link
+              >
+            </td>
           </tr>
         </tbody>
       </table>
@@ -59,7 +67,15 @@
           <td>{{ spot[1].hour_price }}</td>
           <td>{{ spot[1].day_price }}</td>
           <td>{{ spot[1].spots }}</td>
-          <td></td>
+          <td>
+            <router-link
+              :to="{
+                name: 'BookParkingspot',
+                params: { id: spot[0] }
+              }"
+              >Sjekk tilgjengelighet</router-link
+            >
+          </td>
         </tr>
       </tbody>
     </table>
@@ -84,7 +100,7 @@ export default {
   methods: {
     getSpot() {
       axios.get(`http://localhost:5000/spots/`).then((response) => {
-        this.parkingspot = Object.values(response.data);
+        this.parkingspot = Object.entries(response.data);
       });
     },
     getSpotsZipcode(zipcode) {
