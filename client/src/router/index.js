@@ -40,9 +40,9 @@ const routes = [
     component: () => import("../views/users/Profile.vue")
   },
   {
-    path: "/parkingspot",
-    name: "parkingspot",
-    component: () => import("../views/parkingspot.vue")
+    path: "/findparkingspot",
+    name: "Parkingspot",
+    component: () => import("../views/parking/FindParkingspot.vue")
   },
   {
     path: "/myspots",

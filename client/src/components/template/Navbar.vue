@@ -16,7 +16,7 @@
           Logg inn
         </router-link>
 
-        <router-link to="/parkingspot" class="navbar-item" v-if="loggedIn"
+        <router-link to="/findparkingspot" class="navbar-item" v-if="loggedIn"
           >Finn parkering</router-link
         >
 

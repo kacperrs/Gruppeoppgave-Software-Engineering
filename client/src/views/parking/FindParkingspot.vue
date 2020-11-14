@@ -17,31 +17,27 @@
 
       <table class="table" v-if="Object.keys(spots).length === 0">
         <thead>
-        <tr>
-          <th>Addresse</th>
-          <th>Poststed</th>
-          <th>Timespris</th>
-          <th>Døgnpris</th>
-          <th>Antall plasser</th>
-          <th>Link til side</th>
-        </tr>
+          <tr>
+            <th>Addresse</th>
+            <th>Poststed</th>
+            <th>Timespris</th>
+            <th>Døgnpris</th>
+            <th>Antall plasser</th>
+            <th>Link til side</th>
+          </tr>
         </thead>
 
         <tbody>
-        <tr v-for="option in parkingspot" v-bind:key="option.ownerID">
-          <td>{{ option.address }}</td>
-          <td>{{ option.zipcode }}</td>
-          <td>{{ option.hour_price }}</td>
-          <td>{{ option.day_price }}</td>
-          <td>{{ option.spots }}</td>
-          <td>
-
-          </td>
-        </tr>
+          <tr v-for="option in parkingspot" v-bind:key="option.ownerID">
+            <td>{{ option.address }}</td>
+            <td>{{ option.zipcode }}</td>
+            <td>{{ option.hour_price }}</td>
+            <td>{{ option.day_price }}</td>
+            <td>{{ option.spots }}</td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
-
-
     </div>
 
     <table class="table" v-if="Object.keys(spots).length !== 0">
@@ -63,20 +59,17 @@
           <td>{{ spot[1].hour_price }}</td>
           <td>{{ spot[1].day_price }}</td>
           <td>{{ spot[1].spots }}</td>
-          <td>
-
-          </td>
+          <td></td>
         </tr>
       </tbody>
     </table>
   </div>
-
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  name: "Parkingspot",
+  name: "FindParkingspot",
   data: () => {
     return {
       selected: "",
