@@ -45,7 +45,7 @@ const routes = [
     component: () => import("../views/parking/FindParkingspot.vue")
   },
   {
-    path: "/bookparkingspot/:id",
+    path: "/bookparkingspot",
     name: "BookParkingspot",
     component: () => import("../views/parking/BookParkingspot.vue"),
     props: true
