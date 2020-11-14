@@ -17,7 +17,7 @@
     <!-- Tidligere leieforhold -->
     <div class="notification is-warning is-light mt-5">
       <p class="subtitle">Tidligere leieforhold</p>
-      <router-link to="/parkingspot" class="button is-warning is-fullwidth">
+      <router-link to="/findparkingspot" class="button is-warning is-fullwidth">
         Finn en parkeringsplass
       </router-link>
     </div>
@@ -25,14 +25,8 @@
     <!-- Brukerens plasser -->
     <div class="container mt-5">
       <p class="subtitle has-text-danger">Dine parkeringsplasser</p>
+      <!-- Fjerne sportstable og vise denne under detalj visning?s -->
       <MySpotStats />
-      <!-- <div class="notification is-danger is-light mt-5">
-        <p>Du har <strong>X</strong> steder, med til sammen <strong>X</strong> plasser til leie.</p>
-        <p>Totalt leieinntekter denne måneden: <strong>X</strong>.</p>
-        <router-link to="/" class="button is-danger">
-          Se detaljert oversikt
-        </router-link>
-      </div> -->
       <SpotsTable />
       <button
         v-on:click="speak('Lag annonse plassen : kacper')"
