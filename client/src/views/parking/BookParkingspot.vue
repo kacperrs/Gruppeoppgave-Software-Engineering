@@ -87,12 +87,13 @@
           </div>
           <p class="title mt-5">💰 {{ cost }},-</p>
 
-          <button
+          <router-link
+            to="/payment"
             class="button is-info is-fullwidth mt-5"
             v-if="dateFormatter.diff.days > 0"
           >
             Til betaling
-          </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -153,8 +154,6 @@ export default {
       this.dateFormatter.diff.days = Math.ceil(diff / (1000 * 3600 * 24));
       this.dateFormatter.diff.hour = Math.floor((diff / (1000 * 60 * 60)) % 24);
       this.dateFormatter.diff.min = Math.floor((diff / (1000 * 60)) % 60);
-
-      console.log("DIFF: ", diff);
 
       let start = new Date(this.date.start);
       let end = new Date(this.date.end);
