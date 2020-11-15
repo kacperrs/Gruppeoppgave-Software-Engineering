@@ -50,7 +50,6 @@ describe("GET /spots/<id>", () => {
 
 describe("POST /spots", () => {
   it("Should create a parkingspot, and add to database", async () => {
-
     const dummySpot = Object.values(location)[0];
 
     const response = await supertest(app)

@@ -114,7 +114,7 @@ describe("GET /users/spots/:id", () => {
       .get(`/users/spots/${uid}`)
       .expect("Content-Type", /json/)
       .expect(200);
-    
+
     const recivedArrayContaining = response.body.every(
       (item) => item[1].ownerId === uid
     );
@@ -139,13 +139,15 @@ describe("UPDATE /users/:id", () => {
       .put(`/users/${userid}`)
       .send(toUrlEncoded(userData))
       .expect(200);
-    
+
     const updatedUser = dbTest.users.get(userid);
-    expect(updatedUser.firstname == "Sean" && updatedUser.lastname == "Connery").toBe(true);
+    expect(
+      updatedUser.firstname == "Sean" && updatedUser.lastname == "Connery"
+    ).toBe(true);
 
     // Cleanup - remove user
     dbUsers.delete(userid);
     // Verify cleanup
     expect(dbUsers.get(userid)).toBeUndefined();
-  })
-})
+  });
+});
