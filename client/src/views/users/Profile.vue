@@ -28,12 +28,13 @@
       <!-- Fjerne sportstable og vise denne under detalj visning?s -->
       <MySpotStats />
       <SpotsTable />
-      <button
-        v-on:click="speak('Lag annonse plassen : kacper')"
+
+      <router-link
+        to="/Submitparkingspot"
         class="button is-danger is-fullwidth mt-5"
       >
         Legg til parkeringsplass
-      </button>
+      </router-link>
     </div>
   </div>
 </template>

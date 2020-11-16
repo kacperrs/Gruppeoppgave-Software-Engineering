@@ -7,13 +7,9 @@
       </p>
 
       <SpotsTable />
-
-      <button
-        v-on:click="speak('Lag annonse plassen : kacper')"
-        class="button is-primary mt-5"
-      >
+      <router-link to="/Submitparkingspot" class="button is-primary mt-5">
         Legg til parkeringsplass
-      </button>
+      </router-link>
     </div>
   </div>
 </template>
