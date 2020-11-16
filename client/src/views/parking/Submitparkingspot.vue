@@ -140,13 +140,10 @@ export default {
       registrationSuccess: false
     };
   },
-
   methods: {
     async submit() {
       this.form.ownerId = this.token;
-      console.log(this.form);
       await axios
-
         .post("http://localhost:5000/spots/", this.form, {
           headers: {
             "Content-Type": "application/json"
@@ -163,7 +160,6 @@ export default {
         });
     }
   },
-
   computed: {
     token() {
       return this.$store.getters.token;
