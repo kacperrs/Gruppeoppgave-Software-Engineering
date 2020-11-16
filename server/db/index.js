@@ -45,12 +45,16 @@ const dbPayment = {
       .createHash("md5")
       .update(paymentsDb.toString())
       .digest("hex");
+    // Kan fjernes - for test!
+    console.log("db.js:", spotdata);
 
     paymentDb.set(payid, paymentInfo);
     return { id: payid };
   },
   update: (payid, paymentInfo) => {
     return paymentDb.set(payid, paymentInfo) ? false : true;
+    // spots.set(id, spotdata);
+    // return { id: id };
   }
 };
 

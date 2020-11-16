@@ -34,6 +34,10 @@
               Mine parkeringsplasser
             </router-link>
 
+            <router-link to="/Submitparkingspot" class="navbar-item">
+              Legg inn parkeringsplass
+            </router-link>
+
             <router-link to="/profile" class="navbar-item">
               Historikk
             </router-link>

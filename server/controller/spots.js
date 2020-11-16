@@ -32,6 +32,7 @@ const spots = {
   create: (req, res) => {
     const formData = req.body;
 
+
     const spot = {
       ownerId: formData.ownerId,
       address: formData.address,
@@ -44,7 +45,7 @@ const spots = {
     const newSpot = dbSpots.create(spot);
     // set status code if success
     res.status(newSpot ? 201 : 500);
-    res.setHeader("Content-Type", /json/);
+    res.setHeader("Content-Type", /json/ );
     res.send(newSpot);
   },
   getSpotsZipcode: (req, res) => {
