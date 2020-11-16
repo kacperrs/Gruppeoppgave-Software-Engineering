@@ -1,84 +1,60 @@
 <template>
   <div class="parkingspot">
-    <div class="class-use">
-      <h1>Finn parkeringsplasser</h1>
-    </div>
+    <p class="title">Finn parkering</p>
     <div class="container">
-      <h4>Søk etter stedsnavn her:</h4>
-      <select
-        class="form-control"
-        v-model="selected"
-        @change="onChange($event)"
-      >
-        <option v-for="option in parkingspot" v-bind:key="option.ownerID">
-          {{ option[1].zipcode }}
-        </option>
-      </select>
+      <div class="notification is-info is-light">
+        <div class="columns is-vcentered">
+          <div class="column is-narrow">
+            <p class="content is-medium">
+              🔍 Vis i område:
+            </p>
+          </div>
+          <div class="column is-narrow">
+            <div class="select">
+              <select v-model="filter">
+                <option value="all" selected>
+                  Vis alle
+                </option>
+                <option v-for="code in zipcodes" v-bind:key="code">
+                  {{ code }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <table class="table" v-if="Object.keys(spots).length === 0">
+      <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
           <tr>
             <th>Addresse</th>
             <th>Poststed</th>
             <th>Timespris</th>
             <th>Døgnpris</th>
-            <th>Antall plasser</th>
-            <th>Link til side</th>
+            <th>Videre</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr v-for="option in parkingspot" v-bind:key="option.ownerID">
-            <td>{{ option[1].address }}</td>
-            <td>{{ option[1].zipcode }}</td>
-            <td>{{ option[1].hour_price }}</td>
-            <td>{{ option[1].day_price }}</td>
-            <td>{{ option[1].spots }}</td>
-            <td>
+          <tr v-for="spot in parkingspots" v-bind:key="spot[0]">
+            <td>{{ spot[1].address }}</td>
+            <td>{{ spot[1].zipcode }}</td>
+            <td>{{ spot[1].hour_price }}</td>
+            <td>{{ spot[1].day_price }}</td>
+            <td class="is-centered">
               <router-link
+                class="button is-primary is-small"
                 :to="{
                   name: 'BookParkingspot',
-                  params: { id: option[0] }
+                  params: { id: spot[0] }
                 }"
-                >Sjekk tilgjengelighet</router-link
-              >
+                ><strong>&rarr;</strong>
+              </router-link>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
-    <table class="table" v-if="Object.keys(spots).length !== 0">
-      <thead>
-        <tr>
-          <th>Addresse</th>
-          <th>Poststed</th>
-          <th>Timespris</th>
-          <th>Døgnpris</th>
-          <th>Antall plasser</th>
-          <th>Link til side</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="spot in spots" v-bind:key="spot[0]">
-          <td>{{ spot[1].address }}</td>
-          <td>{{ spot[1].zipcode }}</td>
-          <td>{{ spot[1].hour_price }}</td>
-          <td>{{ spot[1].day_price }}</td>
-          <td>{{ spot[1].spots }}</td>
-          <td>
-            <router-link
-              :to="{
-                name: 'BookParkingspot',
-                params: { id: spot[0] }
-              }"
-              >Sjekk tilgjengelighet</router-link
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 
@@ -88,47 +64,44 @@ export default {
   name: "FindParkingspot",
   data: () => {
     return {
-      selected: "",
-      parkingspot: [],
-      spots: {}
+      filter: "all",
+      parkingspots: [],
+      zipcodes: []
     };
   },
   created() {
-    this.getSpot();
-    this.getSpotsZipcode();
+    this.getAllSpots();
   },
   methods: {
-    getSpot() {
+    getAllSpots() {
       axios.get(`http://localhost:5000/spots/`).then((response) => {
-        this.parkingspot = Object.entries(response.data);
+        this.parkingspots = Object.entries(response.data);
+        this.zipcodes = [
+          ...new Set(this.parkingspots.map((spot) => spot[1].zipcode))
+        ];
       });
     },
     getSpotsZipcode(zipcode) {
       axios
         .get(`http://localhost:5000/spots/location/${zipcode}`)
         .then((response) => {
-          console.log(response.data);
-          this.spots = response.data;
+          this.parkingspots = response.data;
         });
-    },
-    onChange(event) {
-      this.getSpotsZipcode(event.target.value);
-      this.selected = event.target.value;
-      console.log(event.target.value);
     }
   },
   computed: {
     token() {
       return this.$store.getters.token;
     }
+  },
+  watch: {
+    filter: function() {
+      this.filter == "all"
+        ? this.getAllSpots()
+        : this.getSpotsZipcode(this.filter);
+    }
   }
 };
 </script>
 
-<style scoped>
-.data-list-input {
-  height: 100%;
-  margin-left: 100px;
-  margin-top: 10px;
-}
-</style>
+<style></style>
