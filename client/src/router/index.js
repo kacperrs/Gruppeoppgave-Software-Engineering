@@ -35,9 +35,9 @@ const routes = [
     component: () => import("../views/users/Logout.vue")
   },
   {
-    path: "/Submitparkingspot",
+    path: "/submitparkingspot",
     name: "Submitparkingspot",
-    component: () => import("../views/Submitparkingspot.vue")
+    component: () => import("../views/parking/Submitparkingspot.vue")
   },
   {
     path: "/profile",
