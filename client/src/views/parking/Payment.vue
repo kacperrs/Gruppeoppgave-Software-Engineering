@@ -142,7 +142,7 @@ export default {
       console.log("Clicked", method);
 
       const booking = {
-        id: this.spot.id,
+        spot: this.spot,
         uid: this.$store.getters.token,
         date: this.date,
         paymentMethod: method,
