@@ -1,4 +1,4 @@
-import { dbSpots, dbUsers } from "../db/index.js";
+import { dbSpots, dbUsers, dbBooking } from "../db/index.js";
 
 const users = {
   all: (req, res) => {
@@ -48,12 +48,6 @@ const users = {
     res.setHeader("Content-Type", /json/);
     res.send(newUser);
   },
-  spots: (req, res) => {
-    const { id } = req.params;
-    const spotArray = Object.entries(dbSpots.get());
-    // res.status(200);
-    res.send(spotArray.filter((spot) => spot[1].ownerId === id));
-  },
   update: (req, res) => {
     const uid = req.params.id;
     const userdata = req.body;
@@ -62,6 +56,31 @@ const users = {
     const updateUser = dbUsers.update(uid, userdata);
 
     res.sendStatus(updateUser ? 200 : 500);
+  },
+  spots: (req, res) => {
+    const { id } = req.params;
+    const spotArray = Object.entries(dbSpots.get());
+    // res.status(200);
+    res.send(spotArray.filter((spot) => spot[1].ownerId === id));
+  },
+  bookings: (req, res) => {
+    const { id } = req.params;
+
+    const allBookings = Object.entries(dbBooking.get());
+    const userBookings = allBookings.filter((booking) => booking[1].uid === id);
+
+    console.log(userBookings);
+
+    res.send(userBookings);
+  },
+  earnigns: (req, res) => {
+    const { id } = req.params;
+    const allBookings = Object.entries(dbBooking.get());
+    const bookingsOnMySpots = allBookings.filter(
+      (booking) => booking[1].spot.ownerId === id
+    );
+    const earnings = bookingsOnMySpots.reduce((sum, i) => sum + i[1].cost, 0);
+    res.send({ sum: earnings });
   }
 };
 
