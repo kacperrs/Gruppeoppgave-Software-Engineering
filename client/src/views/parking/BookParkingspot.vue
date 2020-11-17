@@ -65,10 +65,6 @@
           <div v-if="dateFormatter.diff.days == 1">
             <p>{{ dateFormatter.start }}</p>
             <p>
-              Fra klokken: {{ dateFormatter.start }} <br />
-              Til: {{ dateFormatter.end }}
-            </p>
-            <p>
               <span v-if="dateFormatter.diff.hour > 0">
                 <strong>{{ dateFormatter.diff.hour }}</strong> time(r)</span
               >
@@ -88,9 +84,18 @@
           <p class="title mt-5">💰 {{ cost }},-</p>
 
           <router-link
-            to="/payment"
             class="button is-info is-fullwidth mt-5"
             v-if="dateFormatter.diff.days > 0"
+            :to="{
+              name: 'Payment',
+              params: {
+                spot: spotData,
+                date: date,
+                dateFormatter: dateFormatter,
+                cost: cost,
+                id: $route.params.id
+              }
+            }"
           >
             Til betaling
           </router-link>
@@ -118,10 +123,10 @@ export default {
       timeConfig: {
         type: "number",
         start: {
-          timeAdjust: new Date().getHours() + ":00:00"
+          timeAdjust: "12:00:00"
         },
         end: {
-          timeAdjust: new Date().getHours() + ":30:00"
+          timeAdjust: "15:00:00"
         }
       },
       cost: 0,
