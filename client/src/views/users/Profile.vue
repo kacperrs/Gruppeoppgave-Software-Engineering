@@ -15,23 +15,31 @@
     </div>
 
     <!-- Tidligere leieforhold -->
-    <div class="notification is-warning is-light mt-5">
-      <p class="subtitle">Tidligere leieforhold</p>
-      <router-link to="/findparkingspot" class="button is-warning is-fullwidth">
+    <div class="container mt-5">
+      <p class="notification subtitle is-warning">
+        Tidligere leieforhold
+      </p>
+      <MyBookings />
+      <router-link
+        to="/findparkingspot"
+        class="button is-primary is-fullwidth mt-5 is-outlined"
+      >
         Finn en parkeringsplass
       </router-link>
     </div>
 
     <!-- Brukerens plasser -->
     <div class="container mt-5">
-      <p class="subtitle has-text-danger">Dine parkeringsplasser</p>
+      <p class="notification subtitle is-danger">
+        Dine parkeringsplasser
+      </p>
       <!-- Fjerne sportstable og vise denne under detalj visning?s -->
       <MySpotStats />
       <SpotsTable />
 
       <router-link
         to="/Submitparkingspot"
-        class="button is-danger is-fullwidth mt-5"
+        class="button is-danger is-fullwidth mt-5 is-outlined"
       >
         Legg til parkeringsplass
       </router-link>
@@ -43,12 +51,14 @@
 import axios from "axios";
 import SpotsTable from "@/components/SpotsTable.vue";
 import MySpotStats from "@/components/MySpotStats.vue";
+import MyBookings from "@/components/MyBookings.vue";
 
 export default {
   name: "Profile",
   components: {
     SpotsTable,
-    MySpotStats
+    MySpotStats,
+    MyBookings
   },
   data() {
     return {

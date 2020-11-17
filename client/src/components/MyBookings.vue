@@ -2,40 +2,48 @@
   <div class="myBookingTable">
     <div
       class="notification is-danger is-light mt-5"
-      v-if="Object.keys(spots).length === 0"
+      v-if="bookings.length === 0"
     >
       Ingen tidligere leieforhold ...
     </div>
 
-    <table class="table" v-if="Object.keys(spots).length !== 0">
+    <table
+      class="table is-striped is-hoverable is-fullwidth"
+      v-if="bookings.length !== 0"
+    >
       <thead>
         <tr>
           <th>Addresse</th>
           <th>Poststed</th>
-          <th>Timespris</th>
-          <th>Døgnpris</th>
-          <th>Antall plasser</th>
-          <th>Rediger</th>
+          <th>Fra</th>
+          <th>Til</th>
+          <th>Pris</th>
+          <th>Status</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr v-for="spot in spots" :key="spot[0]">
-          <td>{{ spot[1].address }}</td>
-          <td>{{ spot[1].zipcode }}</td>
-          <td>{{ spot[1].hour_price }}</td>
-          <td>{{ spot[1].day_price }}</td>
-          <td>{{ spot[1].spots }}</td>
+        <tr v-for="booking in bookings" :key="booking[0]">
+          <td>{{ booking[1].spot.address }}</td>
+          <td>{{ booking[1].spot.zipcode }}</td>
+          <td>{{ booking[1].date.start }}</td>
+          <td>{{ booking[1].date.end }}</td>
+          <td>{{ booking[1].cost }}</td>
           <td>
-            <button
-              v-on:click="speak('Rediger plassen')"
-              class="button is-small mr-1"
+            <span
+              class="button is-success is-small"
+              v-if="
+                new Date(booking[1].date.end).getTime() > new Date().getTime()
+              "
+              >Aktiv</span
             >
-              ✏️
-            </button>
-            <button v-on:click="speak('Fjern plassen')" class="button is-small">
-              ❌
-            </button>
+            <span
+              class="button is-danger is-small"
+              v-if="
+                new Date(booking[1].date.end).getTime() < new Date().getTime()
+              "
+              >Utgått</span
+            >
           </td>
         </tr>
       </tbody>
@@ -46,10 +54,10 @@
 <script>
 import axios from "axios";
 export default {
-  name: "SpotsTable",
+  name: "MyBookings",
   data() {
     return {
-      spots: {}
+      bookings: {}
     };
   },
   created() {
@@ -60,9 +68,9 @@ export default {
       axios
         .get(`http://localhost:5000/users/bookings/${this.token}`)
         .then((response) => {
-          console.log(response.data);
+          console.log("HERE", response.data);
 
-          this.spots = response.data;
+          this.bookings = response.data;
         });
     },
     speak: (message) => {

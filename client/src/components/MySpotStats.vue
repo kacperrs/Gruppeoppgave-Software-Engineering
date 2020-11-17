@@ -1,12 +1,20 @@
 <template>
   <div class="spotstable">
-      <div class="notification is-danger is-light mt-5">
-        <p>Du har <strong>{{ spots.length }}</strong> steder, med til sammen <strong>{{ totalSpots }}</strong> plasser til leie.</p>
-        <p>Totalt leieinntekter denne måneden: <strong>X</strong>.</p>
-        <router-link to="/" class="button is-danger">
-          Se detaljert oversikt
-        </router-link>
-      </div>
+    <div class="notification is-danger is-light mt-5">
+      <p>
+        Du har <strong>{{ spots.length }}</strong> plass(er)
+      </p>
+      <p>
+        Totalt leieinntekter: <strong>{{ earnigns }}</strong
+        >.
+      </p>
+      <p
+        class="button is-danger"
+        @click="speak('Til oversiktsside med grafer osv.')"
+      >
+        Se detaljert oversikt
+      </p>
+    </div>
   </div>
 </template>
 
@@ -17,11 +25,12 @@ export default {
   data() {
     return {
       spots: {},
-      totalSpots: 0
+      earnigns: 0
     };
   },
   created() {
-    this.getUserSpots()
+    this.getUserSpots();
+    this.getTotalEarnings();
   },
   methods: {
     getUserSpots() {
@@ -31,7 +40,15 @@ export default {
           console.log(response.data);
 
           this.spots = response.data;
-          response.data.forEach(item => this.totalSpots += parseInt(item[1].spots));
+        });
+    },
+    getTotalEarnings() {
+      axios
+        .get(`http://localhost:5000/users/earnings/${this.token}`)
+        .then((response) => {
+          console.log("Earnings", response.data);
+
+          this.earnigns = response.data.sum;
         });
     },
     speak: (message) => {
