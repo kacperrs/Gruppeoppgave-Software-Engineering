@@ -1,4 +1,4 @@
-import { dbSpots } from "../db/index.js";
+import { dbSpots, dbBooking } from "../db/index.js";
 
 const spots = {
   all: (req, res) => {
@@ -54,8 +54,17 @@ const spots = {
     res.send(spotArray.filter((spot) => spot[1].zipcode === zipcode));
   },
   book: (req, res) => {
-    console.log(req.body);
-    res.sendStatus(200);
+    // Random generate faild payment
+    let willPaymentFail = Math.floor(Math.random() * 2);
+
+    if (willPaymentFail) {
+      console.log("---------------------------");
+      console.log(req.body);
+
+      dbBooking.create(req.body);
+
+      res.sendStatus(200);
+    } else res.sendStatus(402);
   }
 };
 

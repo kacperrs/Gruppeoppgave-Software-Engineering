@@ -2,7 +2,7 @@
   <div id="bookparkingspot" class="container">
     <p class="title">Velg dato</p>
     <p class="subtitle">
-      <strong>{{ spotData.address }}</strong> er ledig følgende dager:
+      <strong>{{ spot.address }}</strong> er ledig følgende dager:
     </p>
     <div class="columns">
       <div class="column is-two-thirds">
@@ -89,11 +89,10 @@
             :to="{
               name: 'Payment',
               params: {
-                spot: spotData,
+                spot: spot,
                 date: date,
                 dateFormatter: dateFormatter,
-                cost: cost,
-                id: $route.params.id
+                cost: cost
               }
             }"
           >
@@ -110,18 +109,18 @@ import axios from "axios";
 
 export default {
   name: "BookParkingSpot",
+  props: {
+    id: {}
+  },
   data() {
     return {
-      spotData: {},
-
+      spot: {},
       date: {
         start: 0,
         end: 0,
         diff: 0
       },
-
       timeConfig: {
-        type: "number",
         start: {
           timeAdjust: "12:00:00"
         },
@@ -146,11 +145,10 @@ export default {
   },
   methods: {
     getSpotData() {
-      axios
-        .get(`http://localhost:5000/spots/${this.$route.params.id}`)
-        .then((response) => {
-          this.spotData = response.data;
-        });
+      axios.get(`http://localhost:5000/spots/${this.id}`).then((response) => {
+        this.spot = response.data;
+        this.spot.id = this.id;
+      });
     }
   },
   watch: {
@@ -170,10 +168,10 @@ export default {
 
       if (this.dateFormatter.diff.days == 1)
         this.cost = Math.round(
-          ((diff / (1000 * 60 * 60)) % 24) * this.spotData.hour_price,
+          ((diff / (1000 * 60 * 60)) % 24) * this.spot.hour_price,
           2
         );
-      else this.cost = this.dateFormatter.diff.days * this.spotData.day_price;
+      else this.cost = this.dateFormatter.diff.days * this.spot.day_price;
     }
   },
   computed: {

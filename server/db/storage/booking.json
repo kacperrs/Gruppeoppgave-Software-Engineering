@@ -1,0 +1,22 @@
+{
+    "c4ca4238a0b923820dcc509a6f75849b": {
+        "id": "c81e728d9d4c2f636f067f89cc14862c",
+        "uid": "c81e728d9d4c2f636f067f89cc14862c",
+        "date": {
+            "start": "2020-11-19T11:00:00.000Z",
+            "end": "2020-11-20T14:00:00.000Z"
+        },
+        "paymentMethod": "vipps",
+        "cost": 1600
+    },
+    "c81e728d9d4c2f636f067f89cc14862c": {
+        "id": "a87ff679a2f3e71d9181a67b7542122c",
+        "uid": "c81e728d9d4c2f636f067f89cc14862c",
+        "date": {
+            "start": "2020-11-27T11:00:00.000Z",
+            "end": "2020-11-27T19:00:00.000Z"
+        },
+        "paymentMethod": "master",
+        "cost": 400
+    }
+}
