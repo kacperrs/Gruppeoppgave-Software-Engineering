@@ -58,9 +58,6 @@ const spots = {
     let willPaymentFail = Math.floor(Math.random() * 2);
 
     if (willPaymentFail) {
-      console.log("---------------------------");
-      console.log(req.body);
-
       dbBooking.create(req.body);
 
       res.sendStatus(200);
