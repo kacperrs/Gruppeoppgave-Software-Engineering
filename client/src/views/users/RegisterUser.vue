@@ -88,37 +88,6 @@
           </div>
         </div>
       </div>
-      <!-- Brukertype -->
-      <div class="field is-horizontal">
-        <div class="field-label">
-          <label class="label">Brukertype</label>
-        </div>
-        <div class="field-body">
-          <div class="field is-narrow">
-            <div class="control">
-              <label class="radio">
-                <input
-                  type="radio"
-                  v-model="form.isFirm"
-                  v-bind:value="false"
-                  name="member"
-                  checked
-                />
-                Privatperson
-              </label>
-              <label class="radio">
-                <input
-                  type="radio"
-                  v-model="form.isFirm"
-                  v-bind:value="true"
-                  name="member"
-                />
-                Firma
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- Brukervillkår -->
       <div class="field is-horizontal">
         <div class="field-label is-normal">
