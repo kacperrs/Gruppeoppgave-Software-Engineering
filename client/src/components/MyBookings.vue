@@ -68,8 +68,6 @@ export default {
       axios
         .get(`http://localhost:5000/users/bookings/${this.token}`)
         .then((response) => {
-          console.log("HERE", response.data);
-
           this.bookings = response.data;
         });
     },
