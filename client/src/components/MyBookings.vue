@@ -1,7 +1,7 @@
 <template>
   <div class="myBookingTable">
     <div
-      class="notification is-danger is-light mt-5"
+      class="notification is-warning is-light mt-5"
       v-if="bookings.length === 0"
     >
       Ingen tidligere leieforhold ...
