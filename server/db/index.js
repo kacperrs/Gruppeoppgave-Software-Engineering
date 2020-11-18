@@ -1,7 +1,6 @@
 import JSONdb from "simple-json-db";
-import crypto from "crypto";
+import repository from "./models/repository.js";
 
-// importer tabell filene
 const userDb = new JSONdb("db/storage/users.json");
 const spots = new JSONdb("db/storage/parking_spots.json");
 const booking = new JSONdb("db/storage/booking.json");
@@ -12,28 +11,8 @@ const dbTest = {
   booking: booking
 };
 
-class dbFunctions {
-  constructor(database) {
-    this.get = (id) => (id ? database.get(id) : database.JSON());
-    this.delete = (id) => (id ? database.delete(id) : false);
-    this.create = (data) => {
-      const objectsInDb = Object.keys(database.JSON()).length + 1;
+const dbUsers = new repository(userDb);
+const dbSpots = new repository(spots);
+const dbBooking = new repository(booking);
 
-      const id = crypto
-        .createHash("md5")
-        .update(objectsInDb.toString())
-        .digest("hex");
-
-      database.set(id, data);
-      return { id: id };
-    };
-    this.update = (id, data) => (database.set(id, data) ? false : true);
-  }
-}
-
-const dbUsers = new dbFunctions(userDb);
-const dbSpots = new dbFunctions(spots);
-const dbBooking = new dbFunctions(booking);
-
-// eksporter dem her
 export { dbUsers, dbSpots, dbBooking, dbTest };
