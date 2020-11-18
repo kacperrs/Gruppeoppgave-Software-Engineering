@@ -7,7 +7,7 @@
         Du er registrert med navnet
         <span class="has-text-weight-bold"
           >{{ user.firstname }} {{ user.lastname }}</span
-        >, ønsker du å gjøre endringer i din profil, trkk på knappen.
+        >, ønsker du å gjøre endringer i din profil, trykk på knappen.
         <router-link to="/editprofile" class="button is-info is-fullwidth mt-5">
           Rediger profil
         </router-link>
