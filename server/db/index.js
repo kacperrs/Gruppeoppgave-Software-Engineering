@@ -1,5 +1,6 @@
 import JSONdb from "simple-json-db";
-import repository from "./models/repository.js";
+import Repository from "./models/repository.js";
+import Database from "./models/database.js";
 
 const userDb = new JSONdb("db/storage/users.json");
 const spots = new JSONdb("db/storage/parking_spots.json");
@@ -11,8 +12,10 @@ const dbTest = {
   booking: booking
 };
 
-const dbUsers = new repository(userDb);
-const dbSpots = new repository(spots);
-const dbBooking = new repository(booking);
+const dbUsers = new Repository(userDb);
+const dbSpots = new Repository(spots);
+const dbBooking = new Repository(booking);
 
-export { dbUsers, dbSpots, dbBooking, dbTest };
+const database = new Database(dbUsers, dbSpots, dbBooking, dbTest);
+// export default new Database(dbUsers, dbSpots, dbBooking, dbTest);
+export default database;

@@ -1,6 +1,6 @@
 import supertest from "supertest";
-import { app } from "../server";
-import { dbUsers } from "../db/index.js";
+import app from "../server";
+import database from "../db/index.js";
 
 const toUrlEncoded = (obj) =>
   Object.keys(obj)
@@ -20,7 +20,7 @@ describe("GET / *", () => {
 
 describe("POST /login", () => {
   it("Valid username and password should respond 200", async () => {
-    const user = dbUsers.get("c4ca4238a0b923820dcc509a6f75849b");
+    const user = database.users.get("c4ca4238a0b923820dcc509a6f75849b");
     const userCredentials = {
       email: user.email,
       password: user.password
@@ -33,7 +33,7 @@ describe("POST /login", () => {
   });
 
   it("Invalid username and password should respond 400", async () => {
-    const user = dbUsers.get("c4ca4238a0b923820dcc509a6f75849b");
+    const user = database.users.get("c4ca4238a0b923820dcc509a6f75849b");
     const userCredentials = {
       email: user.email,
       password: "Batman is my hero"

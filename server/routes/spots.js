@@ -1,7 +1,6 @@
 import express from "express";
 
-import { spots } from "../controller/spots.js";
-// import {getUserSpots} from "../controller/users";
+import spots from "../controller/spots.js";
 
 const router = express.Router();
 

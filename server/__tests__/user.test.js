@@ -1,6 +1,6 @@
 import supertest from "supertest";
-import { app } from "../server";
-import { dbUsers, dbTest } from "../db/index.js";
+import app from "../server";
+import database from "../db/index.js";
 
 const toUrlEncoded = (obj) =>
   Object.keys(obj)
@@ -14,8 +14,7 @@ const agent = {
     lastname: "Bond",
     email: "007@MI6.co.uk",
     password: "shaken-not-stirred",
-    phone: "815 493 00",
-    isFirm: true
+    phone: "815 493 00"
   }
 };
 
@@ -26,7 +25,7 @@ describe("GET /users", () => {
       .expect("Content-Type", /json/)
       .expect(200);
 
-    expect(response.body).toEqual(dbUsers.get());
+    expect(response.body).toEqual(database.users.get());
   });
 });
 
@@ -39,7 +38,7 @@ describe("GET /users/<id>", () => {
       .get(`/users/${userid}`)
       .expect("Content-Type", /json/)
       .expect(200);
-    expect(response.body).toEqual(dbUsers.get(userid));
+    expect(response.body).toEqual(database.users.get(userid));
   });
 
   it("Should respond with 204 if user not in database", async () => {
@@ -56,7 +55,7 @@ describe("DELETE /users/<id>", () => {
     const userData = agentData[0][1];
 
     // Add user directly to db
-    dbTest.users.set(userid, userData);
+    database.dbTest.users.set(userid, userData);
 
     const response = await supertest(app)
       .delete(`/users/${userid}`)
@@ -66,13 +65,13 @@ describe("DELETE /users/<id>", () => {
     expect(response.body.message).toEqual(
       `Bruker med id ${userid} ble fjernet fra databasen.`
     );
-    expect(dbUsers.get(userid)).toBeUndefined();
+    expect(database.users.get(userid)).toBeUndefined();
   });
 
   it("Should return 404 and error message if userid not in database", async () => {
     const userid = Object.keys(agent);
 
-    expect(dbUsers.get(userid)).toBeUndefined();
+    expect(database.users.get(userid)).toBeUndefined();
 
     const response = await supertest(app)
       .delete(`/users/${userid}`)
@@ -96,12 +95,14 @@ describe("POST /users", () => {
       .expect(201);
 
     const newUserId = response.body.id;
-    expect(dbUsers.get(newUserId)).toEqual(expect.objectContaining(agentData));
+    expect(database.users.get(newUserId)).toEqual(
+      expect.objectContaining(agentData)
+    );
 
     // Cleanup - remove user
-    dbUsers.delete(newUserId);
+    database.users.delete(newUserId);
     // Verify cleanup
-    expect(dbUsers.get(newUserId)).toBeUndefined();
+    expect(database.users.get(newUserId)).toBeUndefined();
   });
 });
 
@@ -130,7 +131,7 @@ describe("UPDATE /users/:id", () => {
     const userid = agentData[0][0];
     const userData = agentData[0][1];
 
-    dbTest.users.set(userid, userData);
+    database.dbTest.users.set(userid, userData);
 
     userData.firstname = "Sean";
     userData.lastname = "Connery";
@@ -140,14 +141,14 @@ describe("UPDATE /users/:id", () => {
       .send(toUrlEncoded(userData))
       .expect(200);
 
-    const updatedUser = dbTest.users.get(userid);
+    const updatedUser = database.dbTest.users.get(userid);
     expect(
       updatedUser.firstname == "Sean" && updatedUser.lastname == "Connery"
     ).toBe(true);
 
     // Cleanup - remove user
-    dbUsers.delete(userid);
+    database.users.delete(userid);
     // Verify cleanup
-    expect(dbUsers.get(userid)).toBeUndefined();
+    expect(database.users.get(userid)).toBeUndefined();
   });
 });

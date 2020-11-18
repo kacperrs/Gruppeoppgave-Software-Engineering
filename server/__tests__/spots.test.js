@@ -1,6 +1,6 @@
 import supertest from "supertest";
-import { app } from "../server";
-import { dbSpots, dbTest } from "../db/index.js";
+import app from "../server";
+import database from "../db/index.js";
 
 // Hidden spot ?
 const location = {
@@ -9,8 +9,7 @@ const location = {
     address: "Batmans Cave",
     zipcode: "72000",
     hour_price: "75",
-    day_price: "532",
-    spots: "1"
+    day_price: "532"
   }
 };
 
@@ -26,7 +25,7 @@ describe("GET /spots", () => {
       .expect("Content-Type", /json/)
       .expect(200);
 
-    expect(response.body).toEqual(dbSpots.get());
+    expect(response.body).toEqual(database.spots.get());
   });
 });
 
@@ -39,7 +38,7 @@ describe("GET /spots/<id>", () => {
       .get(`/spots/${id}`)
       .expect("Content-Type", /json/)
       .expect(200);
-    expect(response.body).toEqual(dbSpots.get(id));
+    expect(response.body).toEqual(database.spots.get(id));
   });
 
   it("Should respond with 204 if spot not in database", async () => {
@@ -59,14 +58,14 @@ describe("POST /spots", () => {
       .expect(201);
 
     const newParkingSpotId = response.body.id;
-    expect(dbSpots.get(newParkingSpotId)).toEqual(
+    expect(database.spots.get(newParkingSpotId)).toEqual(
       expect.objectContaining(dummySpot)
     );
 
     // Cleanup - remove parkingspot
-    dbSpots.delete(newParkingSpotId);
+    database.spots.delete(newParkingSpotId);
     // Verify cleanup
-    expect(dbSpots.get(newParkingSpotId)).toBeUndefined();
+    expect(database.spots.get(newParkingSpotId)).toBeUndefined();
   });
 });
 
@@ -77,7 +76,7 @@ describe("DELETE /spots/<id>", () => {
     const spotData = dummySpot[0][1];
 
     // Add spot directly to db
-    dbTest.spots.set(spotId, spotData);
+    database.dbTest.spots.set(spotId, spotData);
 
     const response = await supertest(app)
       .delete(`/spots/${spotId}`)
@@ -87,13 +86,13 @@ describe("DELETE /spots/<id>", () => {
     expect(response.body.message).toEqual(
       `Plass med id ${spotId} ble fjernet fra databasen.`
     );
-    expect(dbSpots.get(spotId)).toBeUndefined();
+    expect(database.spots.get(spotId)).toBeUndefined();
   });
 
   it("Should return 404 and error message if userid not in database", async () => {
     const spotId = Object.keys(location);
 
-    expect(dbSpots.get(spotId)).toBeUndefined();
+    expect(database.spots.get(spotId)).toBeUndefined();
 
     const response = await supertest(app)
       .delete(`/spots/${spotId}`)

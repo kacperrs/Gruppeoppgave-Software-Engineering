@@ -1,6 +1,6 @@
-import { dbUsers } from "../db/index.js";
+import database from "../db/index.js";
 
-export const processLoginData = (req, res) => {
+export default (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -11,7 +11,7 @@ export const processLoginData = (req, res) => {
 };
 
 const verifyUsernamePassword = (email, password) => {
-  const userArray = Object.entries(dbUsers.get());
+  const userArray = Object.entries(database.users.get());
 
   const foundUser = userArray.find((user, i) => {
     if (user[1].email === email && user[1].password === password) return true;

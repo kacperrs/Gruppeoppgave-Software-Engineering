@@ -79,25 +79,6 @@
         </div>
       </div>
 
-      <!-- <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Antall parkeringsplasser</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input
-                class="input"
-                type="number"
-                placeholder="5"
-                v-model="form.spots"
-                required
-              />
-            </p>
-          </div>
-        </div>
-    </div> -->
-
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label"></label>
@@ -133,9 +114,7 @@ export default {
         address: "",
         zipcode: "",
         hour_price: "",
-        day_price: "",
-        spots: "",
-        isFirm: false
+        day_price: ""
       },
       registrationSuccess: false
     };
