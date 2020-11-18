@@ -1,7 +1,9 @@
 import express from "express";
-import users from "../controller/users.js";
+import UserController from "../controller/users.js";
+import database from "../db/index.js";
 
 const router = express.Router();
+const users = new UserController(database);
 
 // husk: users/
 router.get("/", users.all);

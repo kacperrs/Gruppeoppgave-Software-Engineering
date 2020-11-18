@@ -1,8 +1,9 @@
 import express from "express";
-
-import spots from "../controller/spots.js";
+import SpotsController from "../controller/spots.js";
+import database from "../db/index.js";
 
 const router = express.Router();
+const spots = new SpotsController(database);
 
 // husk: spots/
 router.get("/", spots.all);
