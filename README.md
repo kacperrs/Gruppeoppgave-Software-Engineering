@@ -132,3 +132,19 @@ Dette vil bygge systemet og gjøre det klart til bruk.
 Når det er ferdig vil vi få en tilbakemleding i terminalen at systemet er tilgjengelig på <http://localhost:8080>. **Ikke** lukk dette terminalvinduet for da avsluttes programmet.
 
 **Når begge tjenestene kjører, er systemet klart til å brukes. Du kan nå åpne nettleseren din og navigere til <http://localhost:8080> hvor brukergrensesnittet er.**
+
+## Testing
+For å kjøre testene åpner vi en terminal og navigerer til ``server`` mappen. Vi bruker [Jest](https://jestjs.io/) som er ett test rammeverk for JavaScript. Den vil gå igjennom alle mappene å lete etter filer merket med ``<filnavn>.test.js``. Alle filer som ligger i mappen ``__tests__`` automatisk også bli kjørt. Alle testene til programmet vårt ligger i denne mappen.
+
+Når vi er i ``server`` mappen starter vi testene ved:
+```bash
+$ npm run test
+```
+Dette vil kun gi oss en tilbakemelding at alle testene var vellykket, eller hvis noen har feilet så vil den gi en tilbakemelding om det. For en mer utdypende rapport bruker vi `--verbose`
+```bash
+$ npm run test -- --verbose
+```
+
+```bash
+$ npm run test -- --coverage
+```
