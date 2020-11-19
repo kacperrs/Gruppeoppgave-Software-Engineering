@@ -18,6 +18,26 @@ const agent = {
   }
 };
 
+const booking = {
+  "14f8612c1c55b070978ae47c442db4b7": {
+    spot: {
+      ownerId: "9e94b15ed312fa42232fd87a55db0d39",
+      address: "MI 6",
+      zipcode: "London",
+      hour_price: "50",
+      day_price: "400",
+      id: "da6be7f5289569b6b2934d58feae154d"
+    },
+    uid: "69691c7bdcc3ce6d5d8a1361f22d04ac",
+    date: {
+      start: "2020-11-18T11:00:00.000Z",
+      end: "2020-11-20T14:00:00.000Z"
+    },
+    paymentMethod: "vipps",
+    cost: 50
+  }
+};
+
 describe("GET /users", () => {
   it("Should respond with an array of users", async () => {
     const response = await supertest(app)
@@ -150,5 +170,47 @@ describe("UPDATE /users/:id", () => {
     database.users.delete(userid);
     // Verify cleanup
     expect(database.users.get(userid)).toBeUndefined();
+  });
+});
+
+describe("GET /users/booking/:id", () => {
+  it("Should return array containg bookings with users id", async () => {
+    // Admin bruker id
+    const uid = "c4ca4238a0b923820dcc509a6f75849b";
+
+    const response = await supertest(app)
+      .get(`/users/bookings/${uid}`)
+      .expect("Content-Type", /json/)
+      .expect(200);
+
+    const recivedArrayContaining = response.body.every(
+      (item) => item[1].uid === uid
+    );
+
+    expect(recivedArrayContaining).toBe(true);
+  });
+});
+
+describe("GET /users/earnings/:id", () => {
+  it("Should return sum with amount of earnings", async () => {
+    // Fake booking-data
+    const bookingData = Object.entries(booking);
+    const bookingId = bookingData[0][0];
+    const bookingObj = bookingData[0][1];
+
+    // Insert fake booking into db
+    database.dbTest.booking.set(bookingId, bookingObj);
+
+    const response = await supertest(app)
+      .get(`/users/earnings/${bookingObj.spot.ownerId}`)
+      .expect("Content-Type", /json/)
+      .expect(200);
+
+    expect(response.body.sum).toBe(50);
+
+    // Cleanup - remove user
+    database.dbTest.booking.delete(bookingId);
+    // Verify cleanup
+    expect(database.dbTest.booking.get(bookingId)).toBeUndefined();
   });
 });

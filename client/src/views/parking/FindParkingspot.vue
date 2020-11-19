@@ -46,7 +46,9 @@
                 class="button is-primary is-small"
                 :to="{
                   name: 'BookParkingspot',
-                  params: { id: spot[0] }
+                  params: {
+                    id: spot[0]
+                  }
                 }"
                 ><strong>&rarr;</strong>
               </router-link>

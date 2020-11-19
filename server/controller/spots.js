@@ -27,4 +27,16 @@ export default class SpotsController extends Controller {
       res.sendStatus(200);
     } else res.sendStatus(402);
   }
+
+  bookings(req, res) {
+    const { id } = req.params;
+
+    const allBookings = Object.values(this.allData.booking.get());
+    const spotBookings = allBookings.filter(
+      (booking) =>
+        booking.spot.id === id && new Date(booking.date.start) > new Date()
+    );
+    const test = spotBookings.map((booking) => booking.date);
+    res.json(test);
+  }
 }

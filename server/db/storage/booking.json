@@ -88,5 +88,107 @@
         },
         "paymentMethod": "vipps",
         "cost": 400
+    },
+    "1679091c5a880faf6fb5e6087eb1b2dc": {
+        "spot": {
+            "ownerId": "eccbc87e4b5ce2fe28308fd9f2a7baf3",
+            "address": "Rådyrvegen 8",
+            "zipcode": "Frogner",
+            "hour_price": "50",
+            "day_price": "400",
+            "id": "eccbc87e4b5ce2fe28308fd9f2a7baf3"
+        },
+        "uid": "c4ca4238a0b923820dcc509a6f75849b",
+        "date": {
+            "start": "2020-11-18T11:00:00.000Z",
+            "end": "2020-11-20T14:00:00.000Z"
+        },
+        "paymentMethod": "vipps",
+        "cost": 1200
+    },
+    "8f14e45fceea167a5a36dedd4bea2543": {
+        "spot": {
+            "ownerId": "c4ca4238a0b923820dcc509a6f75849b",
+            "address": "Sinsenveien 10",
+            "zipcode": "Sinsen",
+            "hour_price": "50",
+            "day_price": "400",
+            "id": "a87ff679a2f3e71d9181a67b7542122c"
+        },
+        "uid": "c4ca4238a0b923820dcc509a6f75849b",
+        "date": {
+            "start": "2020-11-20T11:00:00.000Z",
+            "end": "2020-11-20T14:00:00.000Z"
+        },
+        "paymentMethod": "master",
+        "cost": 150
+    },
+    "c9f0f895fb98ab9159f51fd0297e236d": {
+        "spot": {
+            "ownerId": "c4ca4238a0b923820dcc509a6f75849b",
+            "address": "Sinsenveien 10",
+            "zipcode": "Sinsen",
+            "hour_price": "50",
+            "day_price": "400",
+            "id": "a87ff679a2f3e71d9181a67b7542122c"
+        },
+        "uid": "c4ca4238a0b923820dcc509a6f75849b",
+        "date": {
+            "start": "2020-11-19T11:00:00.000Z",
+            "end": "2020-11-20T14:00:00.000Z"
+        },
+        "paymentMethod": "vipps",
+        "cost": 800
+    },
+    "45c48cce2e2d7fbdea1afc51c7c6ad26": {
+        "spot": {
+            "ownerId": "c81e728d9d4c2f636f067f89cc14862c",
+            "address": "Stortinget 13",
+            "zipcode": "Oslo",
+            "hour_price": "20",
+            "day_price": "800",
+            "id": "c81e728d9d4c2f636f067f89cc14862c"
+        },
+        "uid": "c4ca4238a0b923820dcc509a6f75849b",
+        "date": {
+            "start": "2020-11-26T11:00:00.000Z",
+            "end": "2020-11-27T14:00:00.000Z"
+        },
+        "paymentMethod": "master",
+        "cost": 1600
+    },
+    "d3d9446802a44259755d38e6d163e820": {
+        "spot": {
+            "ownerId": "c81e728d9d4c2f636f067f89cc14862c",
+            "address": "Stortinget 13",
+            "zipcode": "Oslo",
+            "hour_price": "20",
+            "day_price": "800",
+            "id": "c81e728d9d4c2f636f067f89cc14862c"
+        },
+        "uid": "c4ca4238a0b923820dcc509a6f75849b",
+        "date": {
+            "start": "2020-11-30T11:00:00.000Z",
+            "end": "2020-11-30T14:00:00.000Z"
+        },
+        "paymentMethod": "master",
+        "cost": 60
+    },
+    "6512bd43d9caa6e02c990b0a82652dca": {
+        "spot": {
+            "ownerId": "eccbc87e4b5ce2fe28308fd9f2a7baf3",
+            "address": "Rådyrvegen 8",
+            "zipcode": "Frogner",
+            "hour_price": "50",
+            "day_price": "400",
+            "id": "eccbc87e4b5ce2fe28308fd9f2a7baf3"
+        },
+        "uid": "c4ca4238a0b923820dcc509a6f75849b",
+        "date": {
+            "start": "2020-11-19T11:00:00.000Z",
+            "end": "2020-11-26T14:00:00.000Z"
+        },
+        "paymentMethod": "master",
+        "cost": 3200
     }
 }

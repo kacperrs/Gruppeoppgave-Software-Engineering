@@ -9,8 +9,8 @@
         <v-date-picker
           v-model="date"
           :min-date="new Date()"
-          :disabled-dates="[{ weekdays: [1, 7] }, new Date(1606258800000)]"
           :model-config="timeConfig"
+          :attributes="attributes"
           is-range
           is-expanded
           @change="countDays()"
@@ -114,6 +114,13 @@ export default {
   },
   data() {
     return {
+      attributes: [
+        {
+          dot: "red",
+          dates: [],
+          excludeDates: new Date()
+        }
+      ],
       spot: {},
       date: {
         start: 0,
@@ -137,11 +144,14 @@ export default {
           hour: "",
           min: ""
         }
-      }
+      },
+      stupidDates: [],
+      apiDates: []
     };
   },
   created() {
     this.getSpotData();
+    this.getBookedDates();
   },
   methods: {
     getSpotData() {
@@ -149,6 +159,14 @@ export default {
         this.spot = response.data;
         this.spot.id = this.id;
       });
+    },
+    getBookedDates() {
+      axios
+        .get(`http://localhost:5000/spots/bookings/${this.id}`)
+        .then((response) => {
+          console.log(response.data);
+          this.attributes[0].dates = response.data;
+        });
     }
   },
   watch: {

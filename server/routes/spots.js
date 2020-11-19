@@ -12,6 +12,7 @@ router.delete("/:id", spots.delete);
 router.post("/", spots.create);
 router.get("/location/:zipcode/", spots.getSpotsZipcode);
 router.post("/book", spots.book);
+router.get("/bookings/:id", spots.bookings);
 //router.patch("/:id", spots.);
 
 export default router;
