@@ -26,8 +26,8 @@
         <tr v-for="booking in bookings" :key="booking[0]">
           <td>{{ booking[1].spot.address }}</td>
           <td>{{ booking[1].spot.zipcode }}</td>
-          <td>{{ booking[1].date.start }}</td>
-          <td>{{ booking[1].date.end }}</td>
+          <td>{{ formatDate(booking[1].date.start) }}</td>
+          <td>{{ formatDate(booking[1].date.end) }}</td>
           <td>{{ booking[1].cost }}</td>
           <td>
             <span
@@ -73,6 +73,9 @@ export default {
     },
     speak: (message) => {
       alert(message);
+    },
+    formatDate: function(date) {
+      return new Date(date).toLocaleDateString("no-NO");
     }
   },
   computed: {
