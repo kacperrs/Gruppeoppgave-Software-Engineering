@@ -22,7 +22,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 main {
   margin: 2rem 0 2rem 0;
   min-height: calc(100vh - (232px + 4rem));
