@@ -25,10 +25,9 @@ Vi har valgt å skape en web applikasjon som kommuniserer med hovedsystemet via 
 
 For å laste ned og installere systemet, trenges Node og Git. Usikker på om du har dette installert? Da kan du ta en titt <a href="#innstaller-node-og-git">her</a>, så forklares fremgangsmåten. Hvis dette er greit, gå til neste steg.
 
-#### Laste ned fra github :octocat:
-For å laste ned filene, åpener du terminalen og navigerer til ønsket mappe for systemet.
+### :octocat: Laste ned fra GitHub
+For å laste ned filene, åpener du terminalen og navigerer til ønsket mappe for systemet. Last så ned filene fra github.
 
-Last ned filene fra github :octocat:
 ```bash
 $ git clone https://github.com/wakeupgrumpy/Software-Engineering.git
 ```
@@ -38,7 +37,7 @@ Dette skaper da mappen `Software-Engineering` med alle filene til applikasjonen.
 ```bash
 $ cd Software-Engineering
 ```
-#### Server
+### :pineapple: Server
 Systemet er delt opp i to deler, en ``client`` og en ``server``. Vi skal nå gå igjennom installasjonen av serveren.
 
 Naviger inn i `server` mappen, og installer avhengigheter:
@@ -48,31 +47,21 @@ $ npm install
 ```
 ``npm`` vill nå laste ned alle avhengigheter til server programmet, og legge disse i mappen ``node_modules``.
 
-Når avhengigheten er ferdig lastet ned er systemet klart til bruk. Vi kan starte serveren ved å bruke kommandoen: 
+Når avhengigheten er ferdig lastet ned er server siden av systemet klart til bruk. 
+
+### :strawberry: Client
+Naviger terminalen inn i ``client`` mappen og installer avhengigheter:
 
 ```bash
-$ npm run start
+$ cd client
+$ npm install
 ```
-Du vil nå få en tilbakemelding som ser slik ut, systemet er klart til bruk på <http://localhost:5000>. **Ikke** lukk dette terminalvinduet for da avsluttes programmet.
-```bash
-> share-a-spot@1.0.0 start
-> node index.js
+``npm`` vill nå laste ned alle avhengigheter til klient programmet, og legge disse i mappen ``node_modules``.
 
-Server running on port: http://localhost:5000
-```
-**MERK!** Pass på at det ikke er noe annet på maskinen din som allerede kjører på denne porten, dette vill medføre at systemet ikke starter!
+Når avhengigheten er ferdig lastet ned er klient siden av systemet klart til bruk. 
 
-Hvis du åpner http://localhost:5000 i nettleseren din, så skal du se meldingen: 
-```bash
-{
-  message: "Share-A-Spot Server - Up and 🏃"
-}
-```
-
-#### Client
-
-
-#### Innstaller node og git
+### :construction_worker: Innstaller node og git
+#### Node.js
 For å laste ned og installere systemet kreves Node.js. Usikker på om du har node installert på maskinen? Da kan du åpne terminalen og skrive `node -v`.
 
 ```bash
@@ -84,76 +73,62 @@ Dette vil returnere versjonen av node som er installert. Hvis du får en feilmel
 
 Vi har brukt node versjon **v14.13.0** under utvikling. Men har også blitt testet og virker med seneste versjon **v15.2.1**.
 
+#### Git
+For å laste ned systemet med terminalen fra github trenger du git. Det kan lastes ned her: <https://git-scm.com/download>.
 
 
+#### Git alternativ
+Hvis du ikke ønsker å installere og bruke git. Kan systemet lastes ned som en ``.zip`` fil ved å trykke på den grønne **``CODE``** knappen øverst til høyre på denne siden, og **``Download ZIP``**
 
 
+## Bruk
+Når avhengigheter til server og klienten er lastet ned og installert er systemet kart til bruk. 
 
+:warning: **MERK:** Både **server** og **client** må kjøre for at systemet skal virke som det skal!
 
-Bruk terminalen og naviger til en mappe og last ned github repo (vil da skape mappen `Software-Engineering` med alle filene til applikasjonen):
-
-```bash
-$ git clone https://github.com/wakeupgrumpy/Software-Engineering.git
-```
-
-Så må dere navigere inn i denne mappen:
-
-```bash
-$ cd Software-Engineering
-```
-
-Innstaler alle dependencys til serveren
+### :apple: Server
+Vi åpner en ny terminal og navigerer først til ``server`` mappen. Og starter serveren ved å bruke kommandoen: 
 
 ```bash
-$ npm install
+$ npm run start
 ```
-
-Så for å installere alle vue dependencies:
-
+Du vil nå få en tilbakemelding i terminalen som ser slik ut, systemet er klart til bruk på <http://localhost:5000>. **Ikke** lukk dette terminalvinduet for da avsluttes programmet.
 ```bash
-$ cd client
-$ npm install
+> share-a-spot@1.0.0 start
+> node index.js
+
+Server running on port: http://localhost:5000
+```
+❗ **MERK!** Pass på at det ikke er noe annet på maskinen din som allerede kjører på denne porten, dette vill medføre at systemet ikke starter!
+
+Hvis du åpner http://localhost:5000 i nettleseren din, så skal du se meldingen: 
+```bash
+{
+  message: "Share-A-Spot Server - Up and 🏃"
+}
 ```
 
-Skal i fremtiden når vi er ferdig med utvikling få alt til å være samlet, slik at sensor kun trenger å installere en gang.
+💡 **TIPS:** Ved utvikling brukes ``nodemon``, som gjør at vi ikke selv trenger å starte serveren på nytt hver gang vi gjør en endring. Er det ønskelig å starte serveren på denne måten bruker vi isteden kommandoen:
+```bash
+$ npm run dev
+```
 
-### Front end
+### :grapes: Client
 
-For å starte front-end. Så må dere være i mappen **client**:
+For å starte brukergrensesnittet, åpner vi ett nytt terminalvindu og navigerer til ``client`` mappen.  Vi starter vue sitt utviklingsmiljø ved:
 
 ```bash
 $ npm run serve
 ```
-
-Dere vill da få tilbake en meldin om at vue er tilgjengelig på <http://localhost:8080>
-
-### Back end
-
-Naviger til mappen **Software-Engineering**
-
+Dette vil bygge systemet og gjøre det klart til bruk. 
 ```bash
-$ npm start
+  App running at:
+  - Local:   http://localhost:8080/
+  - Network: http://192.168.1.XXX:8080/
+
+  Note that the development build is not optimized.
+  To create a production build, run npm run build.
 ```
+Når det er ferdig vil vi få en tilbakemleding i terminalen at systemet er tilgjengelig på <http://localhost:8080>. **Ikke** lukk dette terminalvinduet for da avsluttes programmet.
 
-Der vill da få tilbakemelding om at server kjører på <http://localhost:5000>
-
-### Dataflyt
-
-![Dataflyt](https://www.planttext.com/api/plantuml/svg/PP9BQyCm48Jl-XNR70LfxZwKK5fAeFH1eBtq8aTReyIH53r2y--xgzYnI0wo9VdJQ6RmCYOLKjxtGdYQc8tnoYQOIVaOyWw3b3DG4VBrrsziuJSucwI47mjV6U-tiQ37ZDVm6iEHfPXy_lC1Onnfw_GD_gIIQbN4yu7rvwj9M63TNgClpdKzmbxvE3YbwKqIJAetjXki6kyZBE0Dqzc2LoSXCimVs7e3nYOCQfC43NDK2IdyDETqWXwCi_S6f5JUIDb0mCF2krWTBE64u1VpkcKw7dgc3nd3QK8fccvXVb6bZhopMcYiaK5gj7gvUXkThT7Xui4dLT90XudUC8UFzzLqBRTLjaT9tgY4U3dAK4ybPCQOUB57MsNb5cbCIWC1RdTNAvQsYoA1cGMjnb0JN76rfFQNnD0l-Wy0)
-
-### :link: Lenker
-
-- Trello - kanbanbord <https://trello.com/b/Wj1RpvXr/krav/>
-- Emoji liste <https://gist.github.com/rxaviers/7360908>
-
-### :memo: Todo
-
-- [ ] **`README`**
-  - [ ] Legge til epost adresser til gruppemedlemer.
-- [ ] **`Applikasjon`**: Legge til utfyllende informasjon
-  - [ ] Hvordan installere dependencies
-  - [ ] Hvordan skrive en test
-  - [ ] Hvordan kjøre en test
-  - [ ] Hvordan struktruen på applikasjonen skal se ut
-  - [ ] Oversikt over tabeller i databasen
-  - [ ] Hvordan starte serverne i dev
+**Når begge tjenestene kjører, er systemet klart til å brukes. Du kan nå åpne nettleseren din og navigere til <http://localhost:8080> hvor brukergrensesnittet er.**
