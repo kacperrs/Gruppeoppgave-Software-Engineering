@@ -14,8 +14,6 @@ import loginRoutes from "./routes/login.js";
 import spotsRoutes from "./routes/spots.js";
 
 // Api routes
-// Legges under mappen server/routes
-// må importeres på toppen
 app.use("/users", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/spots", spotsRoutes);

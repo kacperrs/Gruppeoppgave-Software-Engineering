@@ -1,11 +1,6 @@
 import supertest from "supertest";
 import app from "../server";
 
-const toUrlEncoded = (obj) =>
-  Object.keys(obj)
-    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(obj[k]))
-    .join("&");
-
 describe("GET /", () => {
   it("Should respond with a message", async () => {
     const response = await supertest(app)
