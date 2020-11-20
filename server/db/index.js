@@ -17,5 +17,4 @@ const dbSpots = new Repository(spots);
 const dbBooking = new Repository(booking);
 
 const database = new Database(dbUsers, dbSpots, dbBooking, dbTest);
-// export default new Database(dbUsers, dbSpots, dbBooking, dbTest);
 export default database;
