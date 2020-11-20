@@ -185,5 +185,11 @@ describe("POST /spots/book", () => {
   it("Should return sum with amount of earnings", async () => {
     const response = await supertest(app).post(`/spots/book`);
     expect(response.statusCode).not.toBe(500);
+
+    const bookingId = response.body.id;
+    // Cleanup - remove parkingspot
+    database.dbTest.booking.delete(bookingId);
+    // Verify cleanup
+    expect(database.dbTest.booking.get(bookingId)).toBeUndefined();
   });
 });
