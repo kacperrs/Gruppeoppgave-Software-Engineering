@@ -171,6 +171,20 @@ describe("UPDATE /users/:id", () => {
     // Verify cleanup
     expect(database.users.get(userid)).toBeUndefined();
   });
+
+  it("Should return 404 with message if userid not found", async () => {
+    // Userid should not be in database
+    const userid = "This is not a key";
+
+    const response = await supertest(app)
+      .put(`/users/${userid}`)
+      .send(toUrlEncoded("No data"))
+      .expect(404);
+
+    expect(response.body.message).toEqual(
+      `Bruker med id ${userid} finnes ikke i databasen`
+    );
+  });
 });
 
 describe("GET /users/booking/:id", () => {
