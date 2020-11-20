@@ -10,7 +10,7 @@
           v-model="date"
           :min-date="new Date()"
           :model-config="timeConfig"
-          :attributes="attributes"
+          :disabled-dates="{ weekdays: [1, 7] }"
           is-range
           is-expanded
           @change="countDays()"
@@ -114,13 +114,6 @@ export default {
   },
   data() {
     return {
-      attributes: [
-        {
-          dot: "red",
-          dates: [],
-          excludeDates: new Date()
-        }
-      ],
       spot: {},
       date: {
         start: 0,
@@ -145,8 +138,7 @@ export default {
           min: ""
         }
       },
-      stupidDates: [],
-      apiDates: []
+      bookedDates: []
     };
   },
   created() {
@@ -164,8 +156,7 @@ export default {
       axios
         .get(`http://localhost:5000/spots/bookings/${this.id}`)
         .then((response) => {
-          console.log(response.data);
-          this.attributes[0].dates = response.data;
+          this.bookedDates = response.data;
         });
     }
   },
