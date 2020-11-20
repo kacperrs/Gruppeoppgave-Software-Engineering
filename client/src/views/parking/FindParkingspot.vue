@@ -44,6 +44,8 @@
             <td class="is-centered">
               <router-link
                 class="button is-primary is-small"
+                :disabled="spot[1].ownerId == token"
+                tag="button"
                 :to="{
                   name: 'BookParkingspot',
                   params: {
