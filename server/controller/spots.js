@@ -22,9 +22,9 @@ export default class SpotsController extends Controller {
     let willPaymentFail = Math.random() <= 0.8;
 
     if (willPaymentFail) {
-      this.allData.booking.create(req.body);
-
-      res.sendStatus(200);
+      const payment = this.allData.booking.create(req.body);
+      res.status(200);
+      res.json(payment);
     } else res.sendStatus(402);
   }
 
