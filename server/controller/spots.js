@@ -18,8 +18,8 @@ export default class SpotsController extends Controller {
   }
 
   book(req, res) {
-    // Random generate faild payment
-    let willPaymentFail = Math.floor(Math.random() * 2);
+    // Random generate faild payment 80%
+    let willPaymentFail = Math.random() <= 0.8;
 
     if (willPaymentFail) {
       this.allData.booking.create(req.body);
