@@ -44,11 +44,11 @@ export default class Controller {
     const uid = req.params.id;
     const userdata = req.body;
 
-    if (this.database.get(uid)) {
+    if (this.database.has(uid)) {
       const updateUser = this.database.update(uid, userdata);
       res.sendStatus(updateUser ? 200 : 500);
     } else {
-      res.staus(404);
+      res.status(404);
       res.json({
         message: `${this.type} med id ${uid} finnes ikke i databasen`
       });
