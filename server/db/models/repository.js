@@ -26,6 +26,11 @@ export default class Repository {
   }
 
   update(id, data) {
-    return this.database.set(id, data) ? false : true;
+    this.database.set(id, data);
+    return true;
+  }
+
+  has(id) {
+    return this.database.has(id);
   }
 }
