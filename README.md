@@ -144,7 +144,21 @@ Dette vil kun gi oss en tilbakemelding at alle testene var vellykket, eller hvis
 ```bash
 $ npm run test -- --verbose
 ```
+Her får vi nå en oversikt over alle testene som blir kjørt med navnende deres. Disse navnene er også beskrivene slik at det er tydelig hva de tester. Se utdrag fra eksempel:
+
+```bash
+ PASS  __tests__/login.test.js
+  GET / *
+    √ / - Should respond with 403 - Forbidden (56 ms)
+    √ / * (any) - Should respond with 403 - Forbidden (6 ms)
+  POST /login
+    √ Valid username and password should respond 200 (28 ms)
+    √ Invalid username and password should respond 400 (6 ms)
+```
+
+For få se hvor mye av koden testene faktisk dekker kan vi bruke en annen kommando `--coverage`.
 
 ```bash
 $ npm run test -- --coverage
 ```
+Dette vil skape en oversiktlig rapport over hvilken filer som blir testet, hvor mye av koden i filene som blir dekket. Og hvis det er noen deler av koden vi ikke har inkludert. I tillegg lager jest en flott rapport som kan åpnes i nettleseren. Her kan man gå inn i de forskjllige filene, og detaljert se koden, og hvor testene eventuelt ikke dekker. Denne rapporten finner man under `coverage/Icov-report/index.html`.
