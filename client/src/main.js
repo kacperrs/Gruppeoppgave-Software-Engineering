@@ -1,9 +1,6 @@
 import Vue from "vue";
 import "bulma/css/bulma.css";
 
-import VueCompositionAPI from "@vue/composition-api";
-Vue.use(VueCompositionAPI);
-
 import VCalendar from "v-calendar";
 Vue.use(VCalendar);
 
