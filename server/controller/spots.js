@@ -18,7 +18,7 @@ export default class SpotsController extends Controller {
   }
 
   book(req, res) {
-    // Random generate faild payment 80%
+    // Random generate faild payment 20%
     let willPaymentFail = Math.random() <= 0.8;
 
     if (willPaymentFail) {

@@ -182,7 +182,7 @@ describe("GET /spots/bookings/:id", () => {
 });
 
 describe("POST /spots/book", () => {
-  it("Should return sum with amount of earnings", async () => {
+  it("Should return 200 if payment OK, or 402 i not.", async () => {
     const response = await supertest(app).post(`/spots/book`);
     expect(response.statusCode).not.toBe(500);
 
