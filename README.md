@@ -7,9 +7,8 @@
 <p align="center">
   <a href="#applikasjonen">Applikasjonen</a> •
   <a href="#last-ned-og-innstaler">Last ned og innstaler</a> •
-  <a href="#">Bruk</a> •
-  <a href="#">Tester</a> •
-  <a href="#">Related</a>
+  <a href="#bruk">Bruk</a> •
+  <a href="#tester">Tester</a>
 </p>
 
 <hr>
