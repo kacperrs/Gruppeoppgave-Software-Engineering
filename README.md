@@ -8,7 +8,7 @@
   <a href="#applikasjonen">Applikasjonen</a> •
   <a href="#last-ned-og-innstaler">Last ned og innstaler</a> •
   <a href="#bruk">Bruk</a> •
-  <a href="#tester">Tester</a>
+  <a href="#testing">Tester</a>
 </p>
 
 <hr>
@@ -22,7 +22,7 @@ Vi har valgt å skape en web applikasjon som kommuniserer med hovedsystemet via 
 
 ## Last ned og innstaler
 
-For å laste ned og installere systemet, trenges Node og Git. Usikker på om du har dette installert? Da kan du ta en titt <a href="#innstaller-node-og-git">her</a>, så forklares fremgangsmåten. Hvis dette er greit, gå til neste steg.
+For å laste ned og installere systemet, trenges Node og Git. Usikker på om du har dette installert? Da kan du ta en titt <a href="#construction_worker-innstaller-node-og-git">her</a>, så forklares fremgangsmåten. Hvis dette er greit, gå til neste steg.
 
 ### :octocat: Laste ned fra GitHub
 For å laste ned filene, åpener du terminalen og navigerer til ønsket mappe for systemet. Last så ned filene fra github.
